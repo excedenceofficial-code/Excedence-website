@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excedence | Content Solutions & Corporate Training</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #111111;
+            --text-muted: #666666;
+            --accent-color: #000000;
+            --border-color: #e5e5e5;
+            --max-width: 1100px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        header {
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-logo img {
+            height: 32px; /* Adjust based on your logo size */
+            width: auto;
+            object-fit: contain;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-muted);
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--text-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 6rem 2rem;
+            text-align: center;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 500;
+            letter-spacing: -1.5px;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 2.5rem auto;
+            font-weight: 300;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        .cta-button.secondary {
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .cta-button:hover {
+            opacity: 0.9;
+        }
+
+        /* Content Layout Sections */
+        section {
+            padding: 6rem 2rem;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        /* Split Presentation for About Section */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .split-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .split-visual img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Dynamic Filtering for Capabilities Group */
+        .filter-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .filter-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1.5rem;
+            font-family: inherit;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+
+        .service-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Layout */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input, textarea, select {
+            font-family: inherit;
+            border: 1px solid var(--border-color);
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            outline: none;
+            background: #fff;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--accent-color);
+        }
+
+        form button {
+            font-family: inherit;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .split-layout, .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .hero h1 { font-size: 2.5rem; }
+            .cta-buttons { flex-direction: column; }
+            nav { display: none; }
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="brand-logo">
+                <!-- Swap logo.png with your actual logo file name once uploaded to GitHub -->
+                <img src="logo.png" alt="Excedence Logo" onerror="this.style.display='none';">
+                <span>EXCEDENCE</span>
+            </a>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#offerings">Our Offerings</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Zone -->
+        <section class="hero">
+            <h1>Clarity in Expression.<br>Authority in Execution.</h1>
+            <p>We deliver elite professional content layout ecosystems alongside structured technical education blueprints tailored specifically for institutional frameworks.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="cta-button">Engage Services</a>
+                <a href="#offerings" class="cta-button secondary">View Frameworks</a>
+            </div>
+        </section>
+
+        <!-- About Us Section with Layout Split -->
+        <section id="about">
+            <h2 class="section-title">About Our Enterprise</h2>
+            <div class="split-layout">
+                <div class="split-text">
+                    <p>
+                        Excedence operates as a specialized, multi-disciplinary partner offering premier document configuration, corporate brand storytelling, and strategic professional copywriting. 
+                    </p>
+                    <p>
+                        We also coordinate specialized, syllabus-aligned IT training architectures. This dual structure ensures we serve both businesses aiming for market visibility and students striving for technological mastery.
+                    </p>
+                </div>
+                <div class="split-visual">
+                    <!-- Placeholder image that you can replace with a team photo or abstract graphic -->
+                    <img src="about-workspace.jpg" alt="Excedence Professional Workspace Architecture" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80'">
+                </div>
+            </div>
+        </section>
+
+        <!-- Capabilities Section -->
+        <section id="offerings">
+            <h2 class="section-title">Capabilities Matrix</h2>
+            
+            <div class="filter-container">
+                <button class="filter-btn active" onclick="filterSelection('all')">View All</button>
+                <button class="filter-btn" onclick="filterSelection('writing')">Content Solutions</button>
+                <button class="filter-btn" onclick="filterSelection('education')">Technical Training</button>
+            </div>
+
+            <div class="services-grid">
+                <!-- Service Card 1 -->
+                <div class="service-card writing">
+                    <span class="service-tag">Content Solutions</span>
+                    <h3>Corporate Communications</h3>
+                    <p>Comprehensive enterprise documentation, media profiles, optimized web environments, and clear marketing content to establish immediate brand authority.</p>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="service-card writing">
+                    <span class="service-tag">Content Solutions</span>
+                    <h3>Strategic Copywriting</h3>
+                    <p>High-conversion messaging frameworks, campaign assets, and technical editing meticulously engineered to align with brand objectives.</p>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="service-card education">
+                    <span class="service-tag">Technical Training</span>
+                    <h3>Digital Literacy Frameworks</h3>
+                    <p>Introductory computer science blueprints, logical problem-solving tracks, and interactive tooling designed specifically for foundational school tiers.</p>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="service-card education">
+                    <span class="service-tag">Technical Training</span>
+                    <h3>Advanced Programming & Logic</h3>
+                    <p>Structured language courses covering programmatic architectures, targeted algorithms, and syllabus-aligned board preparation tracks.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Ecosystem -->
+        <section id="contact">
+            <h2 class="section-title">Initiate Engagement</h2>
+            <div class="contact-container">
+                <div>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem;">
+                        Let us know how our services can best support your corporate communications or institutional training requirements.
+                    </p>
+                    <p><strong>Primary Communication Gateway:</strong><br><a href="mailto:info@excedence.in" style="color: var(--text-color); font-weight: 500;">info@excedence.in</a></p>
+                </div>
+                
+                <form action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                    
+                    <input type="text" name="name" placeholder="Name or Corporate Entity" required>
+                    <input type="email" name="email" placeholder="Email Gateway" required>
+                    
+                    <select name="service_stream" required>
+                        <option value="" disabled selected>Select Core Focus</option>
+                        <option value="content_writing">Content Solutions</option>
+                        <option value="tech_education">Technical Training Programs</option>
+                        <option value="other">General Operational Query</option>
+                    </select>
+
+                    <textarea name="message" rows="5" placeholder="Outline your programmatic requirements or project scope..." required></textarea>
+                    <button type="submit">Submit Request</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Excedence. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function filterSelection(c) {
+            var x, i;
+            x = document.getElementsByClassName("service-card");
+            if (c == "all") c = "";
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+                if (x[i].className.indexOf(c) > -1) {
+                    x[i].style.display = "block";
+                }
+            }
+            var btnContainer = document.querySelector(".filter-container");
+            var btns = btnContainer.getElementsByClassName("filter-btn");
+            for (i = 0; i < btns.length; i++) {
+                btns[i].classList.remove("active");
+            }
+            event.currentTarget.classList.add("active");
+        }
+        filterSelection('all');
+    </script>
+</body>
+</html>
