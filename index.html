@@ -287,10 +287,10 @@
             box-shadow: 0 20px 30px rgba(30, 58, 138, 0.05);
         }
 
-        /* Top Feature Image inside Service Cards */
+        /* Increased Banner Image Height */
         .card-banner-img {
             width: 100%;
-            height: 160px;
+            height: 240px; /* Scaled up from 160px */
             object-fit: cover;
             border-radius: 8px;
             margin-bottom: 1.5rem;
@@ -311,18 +311,19 @@
             border-radius: 8px;
             border-left: 4px solid var(--accent-blue);
             display: flex;
-            gap: 1rem;
-            align-items: flex-start;
+            gap: 1.2rem;
+            align-items: center; /* Centered alignment for cleaner aesthetic with larger thumbnails */
         }
 
-        /* Subsection Small Icons/Images */
+        /* Scaled Up Subsection Sub-Content Thumbnails */
         .module-thumb {
-            width: 50px;
-            height: 50px;
+            width: 75px;   /* Scaled up from 50px */
+            height: 75px;  /* Scaled up from 50px */
             object-fit: cover;
             border-radius: 6px;
             flex-shrink: 0;
-            border: 1px solid rgba(15, 23, 42, 0.05);
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .module-details {
@@ -330,10 +331,10 @@
         }
 
         .tech-module-item h4 {
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 700;
             color: var(--text-main);
-            margin-bottom: 0.15rem;
+            margin-bottom: 0.25rem;
         }
 
         .tech-module-item p {
@@ -504,6 +505,7 @@
     </header>
 
     <main>
+        <!-- Hero Section -->
         <section class="hero reveal">
             <h1>Clarity in Expression.<br><span>Authority in Execution.</span></h1>
             <p>We deliver elite professional content layout ecosystems alongside structured technical education blueprints tailored specifically for institutional frameworks.</p>
@@ -513,6 +515,7 @@
             </div>
         </section>
 
+        <!-- About Us Section -->
         <section id="about" class="reveal">
             <h2 class="section-title">About Our Enterprise</h2>
             <div class="split-layout">
@@ -525,11 +528,12 @@
                     </p>
                 </div>
                 <div class="split-visual">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" alt="Excedence Workspace Architecture">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=700&q=80" alt="Excedence Workspace Architecture">
                 </div>
             </div>
         </section>
 
+        <!-- Services Section -->
         <section id="services" class="reveal">
             <h2 class="section-title">Capabilities Matrix</h2>
             
@@ -542,78 +546,79 @@
 
             <div class="services-grid">
                 
+                <!-- Service Card 1: Technical Academic Content -->
                 <div class="service-card technical">
-                    <img class="card-banner-img" src="https://images.unsplash.com/photo-1581091570814-a59374f6f159?auto=format&fit=crop&w=500&q=80" alt="Technical Engineering Setup">
+                    <img class="card-banner-img" src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80" alt="Advanced Tech and Robotics Systems">
                     <span class="service-tag">Technical Academic Content</span>
                     <h3>Engineering & Systems Expertise</h3>
                     <p>Comprehensive layout configuration and domain-specific assistance across specialized technical streams:</p>
                     
                     <div class="tech-modules-list">
                         <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=80&q=80" alt="Data Analytics">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=150&q=80" alt="Data Analytics Integration">
                             <div class="module-details">
                                 <h4>Data Analysis</h4>
                                 <p>SPSS, Power BI, Tableau, Python</p>
                             </div>
                         </div>
                         <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=80&q=80" alt="AI Logic">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=150&q=80" alt="AI Logic and Neural Infrastructure">
                             <div class="module-details">
                                 <h4>Machine Learning</h4>
                                 <p>Python, MATLAB, Cloud Servers (AWS, Azure)</p>
                             </div>
                         </div>
                         <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=80&q=80" alt="Security Terminal">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=150&q=80" alt="Security Terminal Matrices">
                             <div class="module-details">
                                 <h4>Ethical Hacking</h4>
                                 <p>VMware, Kali, Parrot, OS Servers</p>
                             </div>
                         </div>
                         <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=80&q=80" alt="Networking">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=150&q=80" alt="Networking Equipment">
                             <div class="module-details">
                                 <h4>Networking</h4>
                                 <p>Cisco Packet Tracer, NetSim</p>
                             </div>
                         </div>
                         <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1537462715879-360eeb61a0bc?auto=format&fit=crop&w=80&q=80" alt="3D CAD Modelling">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=150&q=80" alt="3D CAD Modelling Blueprint">
                             <div class="module-details">
                                 <h4>Mechanical Design</h4>
                                 <p>SolidWorks, Star CCM+, Creo, CATIA, MATLAB, AutoCAD</p>
                             </div>
                         </div>
                         <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=80&q=80" alt="Blueprints">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=150&q=80" alt="Civil Blueprints and Layouts">
                             <div class="module-details">
                                 <h4>Civil Design</h4>
                                 <p>AutoCAD, Revit, SPACEgass, STAAD.Pro, ETABs</p>
                             </div>
                         </div>
                         <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1517420164051-3bf50b4e7450?auto=format&fit=crop&w=80&q=80" alt="Circuit Schematics">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1517420164051-3bf50b4e7450?auto=format&fit=crop&w=150&q=80" alt="Circuit Schematics Mapping">
                             <div class="module-details">
                                 <h4>Electrical/Electronic Designs</h4>
                                 <p>Simulink, LTspice, QSPICE, TinyCAD, NI Multisim, AutoCAD Electrical</p>
                             </div>
                         </div>
                         <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&w=80&q=80" alt="Digital Forensics">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&w=150&q=80" alt="Digital Forensics Interfaces">
                             <div class="module-details">
                                 <h4>Digital Forensics</h4>
                                 <p>Autopsy, FTK Tool Manager</p>
                             </div>
                         </div>
                         <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=80&q=80" alt="Code Objects">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=150&q=80" alt="Programming Engineering Code">
                             <div class="module-details">
                                 <h4>Object Oriented Programming</h4>
                                 <p>Java, Kotlin</p>
                             </div>
                         </div>
                         <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=80&q=80" alt="Figma UI/UX Canvas">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&q=80" alt="Figma UI/UX Framework Canvas">
                             <div class="module-details">
                                 <h4>UX/UI Prototyping</h4>
                                 <p>Figma Design Canvas</p>
@@ -622,71 +627,72 @@
                     </div>
                 </div>
 
+                <!-- Service Card 2: Non-Technical Academic Content -->
                 <div class="service-card non-technical">
-                    <img class="card-banner-img" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=500&q=80" alt="Corporate Boardroom Strategy">
+                    <img class="card-banner-img" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80" alt="Corporate Boardroom Strategy Suite">
                     <span class="service-tag">Non-Technical Academic Content</span>
                     <h3>Business & Strategic Management</h3>
                     <p>High-level administrative documentation layouts, corporate reviews, and management framework editing:</p>
                     
                     <div class="tech-modules-list">
                         <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=80&q=80" alt="Charts Summary">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=150&q=80" alt="Charts Summary Matrix">
                             <div class="module-details">
                                 <h4>Business Report</h4>
                                 <p>Analytical formatting and standard management summaries</p>
                             </div>
                         </div>
                         <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1521791136368-1a46827d3ad4?auto=format&fit=crop&w=80&q=80" alt="Team Consultation">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1521791136368-1a46827d3ad4?auto=format&fit=crop&w=150&q=80" alt="Team Consultation Strategy">
                             <div class="module-details">
                                 <h4>Human Resource Management</h4>
                                 <p>Workforce strategy framing and policy layout structures</p>
                             </div>
                         </div>
                         <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=80&q=80" alt="Digital Dashboard Simulation">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=150&q=80" alt="Digital Dashboard Simulation Interface">
                             <div class="module-details">
                                 <h4>Business Simulation Based Report</h4>
                                 <p>Data-driven operational metrics and executive results layouts</p>
                             </div>
                         </div>
                         <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=80&q=80" alt="Project Execution Board">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=150&q=80" alt="Project Execution Framework Board">
                             <div class="module-details">
                                 <h4>Project Management</h4>
                                 <p>PMBOK-aligned execution matrices and framework reviews</p>
                             </div>
                         </div>
                         <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=80&q=80" alt="Organizational Culture Group">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=150&q=80" alt="Organizational Culture Dynamics Group">
                             <div class="module-details">
                                 <h4>Organizational Behavior (OB) Reports</h4>
                                 <p>Cultural analysis schemas and workplace dynamic reporting</p>
                             </div>
                         </div>
                         <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=80&q=80" alt="Strategic Strategy Matrix">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=150&q=80" alt="Strategic Plan and Optimization Matrix">
                             <div class="module-details">
                                 <h4>Strategic Management Case Studies</h4>
                                 <p>Competitive landscape breakdowns and business case modeling</p>
                             </div>
                         </div>
                         <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=80&q=80" alt="Warehouse Logistics">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=150&q=80" alt="Warehouse Systems and Logistics">
                             <div class="module-details">
                                 <h4>Supply Chain & Operations Reports</h4>
                                 <p>Logistical framework mapping and efficiency optimization layouts</p>
                             </div>
                         </div>
                         <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=80&q=80" alt="CSR Ecological Planning">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=150&q=80" alt="CSR Ecological Planning Infrastructure">
                             <div class="module-details">
                                 <h4>Corporate Social Responsibility (CSR) Reports</h4>
                                 <p>Sustainability auditing designs and compliance documentation</p>
                             </div>
                         </div>
                         <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=80&q=80" alt="Accounting Balances">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=150&q=80" alt="Accounting Metrics Balances">
                             <div class="module-details">
                                 <h4>Financial Management & Accounting Analysis</h4>
                                 <p>Balance configuration assistance and fiscal assessment schemas</p>
@@ -695,14 +701,16 @@
                     </div>
                 </div>
 
+                <!-- Service Card 3: Dissertation / Thesis -->
                 <div class="service-card dissertation">
-                    <img class="card-banner-img" src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=500&q=80" alt="Academic Archival Library Books">
+                    <img class="card-banner-img" src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80" alt="Academic Archival Library Research Reference">
                     <span class="service-tag">Dissertation / Thesis</span>
                     <h3>Advanced Research Architecture</h3>
                     <p>Structural consulting, research methodology layout curation, and scholarly editing blueprints meticulously engineered to meet demanding institutional frameworks.</p>
                 </div>
             </div>
 
+            <!-- FAQ Accordion -->
             <div class="faq-wrapper">
                 <div class="accordion-item">
                     <button class="accordion-header" onclick="toggleAccordion(this)">
@@ -725,6 +733,7 @@
             </div>
         </section>
 
+        <!-- Contact Section -->
         <section id="contact" class="reveal">
             <h2 class="section-title">Initiate Engagement</h2>
             <div class="contact-container">
