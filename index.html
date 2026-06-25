@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excedence | Content Solutions & Corporate Training</title>
+    <title>Excedence | Academic Content Solutions & Research Assistance</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -62,7 +62,7 @@
         }
 
         .brand-logo img {
-            height: 32px; /* Adjust based on your logo size */
+            height: 32px;
             width: auto;
             object-fit: contain;
         }
@@ -174,6 +174,7 @@
             display: flex;
             gap: 1rem;
             margin-bottom: 2.5rem;
+            flex-wrap: wrap;
         }
 
         .filter-btn {
@@ -185,6 +186,7 @@
             cursor: pointer;
             border-radius: 20px;
             transition: all 0.2s ease;
+            margin-bottom: 0.5rem;
         }
 
         .filter-btn.active, .filter-btn:hover {
@@ -232,6 +234,21 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
+        }
+
+        .contact-details p {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-link {
+            color: var(--text-color);
+            font-weight: 500;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .contact-link:hover {
+            opacity: 0.7;
         }
 
         form {
@@ -289,13 +306,12 @@
     <header>
         <div class="nav-container">
             <a href="#" class="brand-logo">
-                <!-- Swap logo.png with your actual logo file name once uploaded to GitHub -->
                 <img src="logo.png" alt="Excedence Logo" onerror="this.style.display='none';">
                 <span>EXCEDENCE</span>
             </a>
             <nav>
                 <a href="#about">About</a>
-                <a href="#offerings">Our Offerings</a>
+                <a href="#services">Our Services</a>
                 <a href="#contact">Contact</a>
             </nav>
         </div>
@@ -308,7 +324,7 @@
             <p>We deliver elite professional content layout ecosystems alongside structured technical education blueprints tailored specifically for institutional frameworks.</p>
             <div class="cta-buttons">
                 <a href="#contact" class="cta-button">Engage Services</a>
-                <a href="#offerings" class="cta-button secondary">View Frameworks</a>
+                <a href="#services" class="cta-button secondary">View Frameworks</a>
             </div>
         </section>
 
@@ -325,49 +341,42 @@
                     </p>
                 </div>
                 <div class="split-visual">
-                    <!-- Placeholder image that you can replace with a team photo or abstract graphic -->
                     <img src="about-workspace.jpg" alt="Excedence Professional Workspace Architecture" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80'">
                 </div>
             </div>
         </section>
 
-        <!-- Capabilities Section -->
-        <section id="offerings">
+        <!-- Services Section -->
+        <section id="services">
             <h2 class="section-title">Capabilities Matrix</h2>
             
             <div class="filter-container">
                 <button class="filter-btn active" onclick="filterSelection('all')">View All</button>
-                <button class="filter-btn" onclick="filterSelection('writing')">Content Solutions</button>
-                <button class="filter-btn" onclick="filterSelection('education')">Technical Training</button>
+                <button class="filter-btn" onclick="filterSelection('technical')">Technical Academic Content</button>
+                <button class="filter-btn" onclick="filterSelection('non-technical')">Non-Technical Academic Content</button>
+                <button class="filter-btn" onclick="filterSelection('dissertation')">Dissertation / Thesis</button>
             </div>
 
             <div class="services-grid">
                 <!-- Service Card 1 -->
-                <div class="service-card writing">
-                    <span class="service-tag">Content Solutions</span>
-                    <h3>Corporate Communications</h3>
-                    <p>Comprehensive enterprise documentation, media profiles, optimized web environments, and clear marketing content to establish immediate brand authority.</p>
+                <div class="service-card technical">
+                    <span class="service-tag">Technical Academic Content</span>
+                    <h3>Engineering & Science Frameworks</h3>
+                    <p>Meticulously structured technical blueprints, logic-driven course materials, syllabus configurations, and documentation optimized for academic rigor and clarity.</p>
                 </div>
 
                 <!-- Service Card 2 -->
-                <div class="service-card writing">
-                    <span class="service-tag">Content Solutions</span>
-                    <h3>Strategic Copywriting</h3>
-                    <p>High-conversion messaging frameworks, campaign assets, and technical editing meticulously engineered to align with brand objectives.</p>
+                <div class="service-card non-technical">
+                    <span class="service-tag">Non-Technical Academic Content</span>
+                    <h3>Humanities & Media Solutions</h3>
+                    <p>Strategic narrative curation, informational layouts, and comprehensive copy assets designed for social studies, communication streams, and institutional curriculum alignment.</p>
                 </div>
 
                 <!-- Service Card 3 -->
-                <div class="service-card education">
-                    <span class="service-tag">Technical Training</span>
-                    <h3>Digital Literacy Frameworks</h3>
-                    <p>Introductory computer science blueprints, logical problem-solving tracks, and interactive tooling designed specifically for foundational school tiers.</p>
-                </div>
-
-                <!-- Service Card 4 -->
-                <div class="service-card education">
-                    <span class="service-tag">Technical Training</span>
-                    <h3>Advanced Programming & Logic</h3>
-                    <p>Structured language courses covering programmatic architectures, targeted algorithms, and syllabus-aligned board preparation tracks.</p>
+                <div class="service-card dissertation">
+                    <span class="service-tag">Dissertation / Thesis</span>
+                    <h3>Advanced Research Architecture</h3>
+                    <p>Structural consulting, research methodology layout curation, and scholarly editing blueprints meticulously engineered to meet demanding institutional frameworks.</p>
                 </div>
             </div>
         </section>
@@ -376,11 +385,18 @@
         <section id="contact">
             <h2 class="section-title">Initiate Engagement</h2>
             <div class="contact-container">
-                <div>
+                <div class="contact-details">
                     <p style="color: var(--text-muted); margin-bottom: 2rem;">
                         Let us know how our services can best support your corporate communications or institutional training requirements.
                     </p>
-                    <p><strong>Primary Communication Gateway:</strong><br><a href="mailto:info@excedence.in" style="color: var(--text-color); font-weight: 500;">info@excedence.in</a></p>
+                    <p>
+                        <strong>Primary Communication Gateway:</strong><br>
+                        <a href="mailto:excedence.official@gmail.com" class="contact-link">excedence.official@gmail.com</a>
+                    </p>
+                    <p>
+                        <strong>Call / WhatsApp:</strong><br>
+                        <a href="https://wa.me/918240772281" target="_blank" class="contact-link">+91 82407 72281</a>
+                    </p>
                 </div>
                 
                 <form action="https://api.web3forms.com/submit" method="POST">
@@ -391,8 +407,9 @@
                     
                     <select name="service_stream" required>
                         <option value="" disabled selected>Select Core Focus</option>
-                        <option value="content_writing">Content Solutions</option>
-                        <option value="tech_education">Technical Training Programs</option>
+                        <option value="technical_academic">Technical Academic Content</option>
+                        <option value="non_technical_academic">Non-Technical Academic Content</option>
+                        <option value="dissertation_thesis">Dissertation / Thesis Support</option>
                         <option value="other">General Operational Query</option>
                     </select>
 
@@ -423,8 +440,11 @@
             for (i = 0; i < btns.length; i++) {
                 btns[i].classList.remove("active");
             }
-            event.currentTarget.classList.add("active");
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add("active");
+            }
         }
+        // Initialize filtering layout
         filterSelection('all');
     </script>
 </body>
