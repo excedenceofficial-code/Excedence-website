@@ -9,14 +9,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Calm Light Color Palette based on Dark Blue Anchor */
-            --bg-base: #f4f7fa;          /* Calm, very light slate-blue */
-            --bg-card: #ffffff;          /* Crisp white for content separation */
-            --text-main: #0f172a;        /* Sleek slate 900 for premium readability */
-            --text-muted: #475569;       /* Slate 600 for supporting text */
-            --accent-blue: #1e3a8a;      /* Deep Dark Blue based on your logo */
-            --accent-glow: #dbeafe;      /* Soft blue mist for hover elements */
-            --border-subtle: #e2e8f0;    /* Soft separator lines */
+            --bg-base: #f4f7fa;          
+            --bg-card: #ffffff;          
+            --text-main: #0f172a;        
+            --text-muted: #475569;       
+            --accent-blue: #1e3a8a;      
+            --accent-glow: #dbeafe;      
+            --border-subtle: #e2e8f0;    
             --max-width: 1100px;
         }
 
@@ -38,7 +37,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Dynamic Reveal-on-Scroll Core Style */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -55,7 +53,7 @@
             border-bottom: 1px solid var(--border-subtle);
             position: sticky;
             top: 0;
-            background: rgba(244, 247, 250, 0.85); /* Blurred calm background match */
+            background: rgba(244, 247, 250, 0.85); 
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             z-index: 100;
@@ -74,7 +72,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.2rem 2rem;
+            padding: 1rem 2rem;
         }
 
         .brand-logo {
@@ -89,7 +87,7 @@
         }
 
         .brand-logo img {
-            height: 34px;
+            height: 38px; 
             width: auto;
             object-fit: contain;
         }
@@ -115,13 +113,8 @@
             transition: width 0.25s ease;
         }
 
-        nav a:hover {
-            color: var(--accent-blue);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
+        nav a:hover { color: var(--accent-blue); }
+        nav a:hover::after { width: 100%; }
 
         /* Hero Section */
         .hero {
@@ -189,10 +182,9 @@
         .cta-button.secondary:hover {
             background-color: var(--accent-glow);
             border-color: rgba(30, 58, 138, 0.2);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
         }
 
-        /* Content Layout Sections */
+        /* Layout Sections */
         section {
             padding: 8rem 2rem;
             max-width: var(--max-width);
@@ -220,7 +212,7 @@
             border-radius: 2px;
         }
 
-        /* About Section */
+        /* About Layout */
         .split-layout {
             display: grid;
             grid-template-columns: 1.1fr 1fr;
@@ -238,38 +230,14 @@
             position: relative;
         }
 
-        .split-visual::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 100%;
-            height: 100%;
-            border: 2px solid rgba(30, 58, 138, 0.15);
-            border-radius: 12px;
-            z-index: 1;
-            transition: all 0.4s ease;
-        }
-
         .split-visual img {
-            position: relative;
             width: 100%;
             height: auto;
             border-radius: 12px;
             box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
-            z-index: 2;
-            transition: transform 0.4s ease;
         }
 
-        .split-layout:hover .split-visual::before {
-            transform: translate(-10px, -10px);
-        }
-
-        .split-layout:hover .split-visual img {
-            transform: scale(1.01);
-        }
-
-        /* Dynamic Interactive Filter Capabilities */
+        /* Filter UI */
         .filter-container {
             display: flex;
             gap: 0.8rem;
@@ -287,21 +255,21 @@
             font-weight: 600;
             cursor: pointer;
             border-radius: 30px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.01);
-            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: all 0.3s;
         }
 
         .filter-btn.active, .filter-btn:hover {
             background: var(--accent-blue);
             color: white;
             border-color: var(--accent-blue);
-            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
         }
 
+        /* Services Grid Layout */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2.5rem;
+            align-items: start;
         }
 
         .service-card {
@@ -317,6 +285,61 @@
             transform: translateY(-5px);
             border-color: rgba(30, 58, 138, 0.15);
             box-shadow: 0 20px 30px rgba(30, 58, 138, 0.05);
+        }
+
+        /* Top Feature Image inside Service Cards */
+        .card-banner-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-subtle);
+        }
+
+        /* Inner Content Matrix */
+        .tech-modules-list {
+            margin-top: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+        }
+
+        .tech-module-item {
+            background: var(--bg-base);
+            padding: 1.2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-blue);
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        /* Subsection Small Icons/Images */
+        .module-thumb {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 6px;
+            flex-shrink: 0;
+            border: 1px solid rgba(15, 23, 42, 0.05);
+        }
+
+        .module-details {
+            flex-grow: 1;
+        }
+
+        .tech-module-item h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.15rem;
+        }
+
+        .tech-module-item p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
         }
 
         .service-tag {
@@ -339,13 +362,14 @@
             color: var(--text-main);
         }
 
-        .service-card p {
+        .service-card > p {
             color: var(--text-muted);
             font-size: 1rem;
             line-height: 1.6;
+            margin-bottom: 1rem;
         }
 
-        /* Dynamic Feature: FAQ Accordion Component */
+        /* FAQ Accordion */
         .faq-wrapper {
             margin-top: 4rem;
             background: var(--bg-card);
@@ -354,13 +378,8 @@
             padding: 1rem;
         }
 
-        .accordion-item {
-            border-bottom: 1px solid var(--border-subtle);
-        }
-
-        .accordion-item:last-child {
-            border-bottom: none;
-        }
+        .accordion-item { border-bottom: 1px solid var(--border-subtle); }
+        .accordion-item:last-child { border-bottom: none; }
 
         .accordion-header {
             width: 100%;
@@ -384,9 +403,7 @@
             color: var(--accent-blue);
         }
 
-        .accordion-header.active .icon {
-            transform: rotate(45deg);
-        }
+        .accordion-header.active .icon { transform: rotate(45deg); }
 
         .accordion-content {
             max-height: 0;
@@ -408,34 +425,20 @@
             gap: 5rem;
         }
 
-        .contact-details p {
-            margin-bottom: 1.8rem;
-            font-size: 1.05rem;
-        }
-
         .contact-box {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
             padding: 2rem;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
         }
 
         .contact-link {
             color: var(--accent-blue);
             font-weight: 600;
             text-decoration: none;
-            transition: color 0.2s;
         }
 
-        .contact-link:hover {
-            color: #3b82f6;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
+        form { display: flex; flex-direction: column; }
 
         input, textarea, select {
             font-family: inherit;
@@ -446,8 +449,6 @@
             font-size: 1rem;
             outline: none;
             background: var(--bg-base);
-            color: var(--text-main);
-            transition: all 0.3s ease;
         }
 
         input:focus, textarea:focus, select:focus {
@@ -464,24 +465,16 @@
             padding: 1rem;
             border-radius: 8px;
             font-weight: 600;
-            font-size: 1rem;
             cursor: pointer;
-            box-shadow: 0 4px 14px rgba(30, 58, 138, 0.2);
-            transition: all 0.3s;
         }
 
-        form button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
+        @media (max-width: 992px) {
+            .services-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
-            .split-layout, .contact-container {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
+            .split-layout, .contact-container { grid-template-columns: 1fr; gap: 3rem; }
             .hero h1 { font-size: 2.8rem; letter-spacing: -1px; }
-            .cta-buttons { flex-direction: column; }
             nav { display: none; }
         }
 
@@ -511,35 +504,32 @@
     </header>
 
     <main>
-        <!-- Hero Zone -->
         <section class="hero reveal">
-            <h1>Exceeding Intelligence...</span></h1>
-            <p>Where Research Meets Exceptional Writing. Expert Academic Content Solutions for Technical, Non-Technical, Thesis & Dissertation Projects.</p>
+            <h1>Clarity in Expression.<br><span>Authority in Execution.</span></h1>
+            <p>We deliver elite professional content layout ecosystems alongside structured technical education blueprints tailored specifically for institutional frameworks.</p>
             <div class="cta-buttons">
                 <a href="#contact" class="cta-button">Engage Services</a>
                 <a href="#services" class="cta-button secondary">View Frameworks</a>
             </div>
         </section>
 
-        <!-- About Us Section -->
         <section id="about" class="reveal">
             <h2 class="section-title">About Our Enterprise</h2>
             <div class="split-layout">
                 <div class="split-text">
                     <p>
-                        Excedence delivers expert academic content solutions across technical and non-technical disciplines with specialization in thesis, dissertation, and research-driven projects. 
+                        Excedence operates as a specialized, multi-disciplinary partner offering premier document configuration, corporate brand storytelling, and strategic professional copywriting. 
                     </p>
                     <p>
-                        Our expertise spans Machine Learning, Data Processing, Ethical Hacking, Software Development, Mechanical & Civil Design, Biomedical Studies, and Law — delivering original, plagiarism-checked, academically aligned content built to professional standards.
+                        We also coordinate specialized, syllabus-aligned IT training architectures. This dual structure ensures we serve both businesses aiming for market visibility and students striving for technological mastery.
                     </p>
                 </div>
                 <div class="split-visual">
-                    <img src="about-workspace.jpg" alt="Excedence Professional Workspace Architecture" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80'">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" alt="Excedence Workspace Architecture">
                 </div>
             </div>
         </section>
 
-        <!-- Services Section -->
         <section id="services" class="reveal">
             <h2 class="section-title">Capabilities Matrix</h2>
             
@@ -551,29 +541,168 @@
             </div>
 
             <div class="services-grid">
-                <!-- Service Card 1 -->
+                
                 <div class="service-card technical">
+                    <img class="card-banner-img" src="https://images.unsplash.com/photo-1581091570814-a59374f6f159?auto=format&fit=crop&w=500&q=80" alt="Technical Engineering Setup">
                     <span class="service-tag">Technical Academic Content</span>
-                    <h3>Engineering & Science Frameworks</h3>
-                    <p>Meticulously structured technical blueprints, logic-driven course materials, syllabus configurations, and documentation optimized for academic rigor and clarity.</p>
+                    <h3>Engineering & Systems Expertise</h3>
+                    <p>Comprehensive layout configuration and domain-specific assistance across specialized technical streams:</p>
+                    
+                    <div class="tech-modules-list">
+                        <div class="tech-module-item">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=80&q=80" alt="Data Analytics">
+                            <div class="module-details">
+                                <h4>Data Analysis</h4>
+                                <p>SPSS, Power BI, Tableau, Python</p>
+                            </div>
+                        </div>
+                        <div class="tech-module-item">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=80&q=80" alt="AI Logic">
+                            <div class="module-details">
+                                <h4>Machine Learning</h4>
+                                <p>Python, MATLAB, Cloud Servers (AWS, Azure)</p>
+                            </div>
+                        </div>
+                        <div class="tech-module-item">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=80&q=80" alt="Security Terminal">
+                            <div class="module-details">
+                                <h4>Ethical Hacking</h4>
+                                <p>VMware, Kali, Parrot, OS Servers</p>
+                            </div>
+                        </div>
+                        <div class="tech-module-item">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=80&q=80" alt="Networking">
+                            <div class="module-details">
+                                <h4>Networking</h4>
+                                <p>Cisco Packet Tracer, NetSim</p>
+                            </div>
+                        </div>
+                        <div class="tech-module-item">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1537462715879-360eeb61a0bc?auto=format&fit=crop&w=80&q=80" alt="3D CAD Modelling">
+                            <div class="module-details">
+                                <h4>Mechanical Design</h4>
+                                <p>SolidWorks, Star CCM+, Creo, CATIA, MATLAB, AutoCAD</p>
+                            </div>
+                        </div>
+                        <div class="tech-module-item">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=80&q=80" alt="Blueprints">
+                            <div class="module-details">
+                                <h4>Civil Design</h4>
+                                <p>AutoCAD, Revit, SPACEgass, STAAD.Pro, ETABs</p>
+                            </div>
+                        </div>
+                        <div class="tech-module-item">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1517420164051-3bf50b4e7450?auto=format&fit=crop&w=80&q=80" alt="Circuit Schematics">
+                            <div class="module-details">
+                                <h4>Electrical/Electronic Designs</h4>
+                                <p>Simulink, LTspice, QSPICE, TinyCAD, NI Multisim, AutoCAD Electrical</p>
+                            </div>
+                        </div>
+                        <div class="tech-module-item">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&w=80&q=80" alt="Digital Forensics">
+                            <div class="module-details">
+                                <h4>Digital Forensics</h4>
+                                <p>Autopsy, FTK Tool Manager</p>
+                            </div>
+                        </div>
+                        <div class="tech-module-item">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=80&q=80" alt="Code Objects">
+                            <div class="module-details">
+                                <h4>Object Oriented Programming</h4>
+                                <p>Java, Kotlin</p>
+                            </div>
+                        </div>
+                        <div class="tech-module-item">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=80&q=80" alt="Figma UI/UX Canvas">
+                            <div class="module-details">
+                                <h4>UX/UI Prototyping</h4>
+                                <p>Figma Design Canvas</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Service Card 2 -->
                 <div class="service-card non-technical">
+                    <img class="card-banner-img" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=500&q=80" alt="Corporate Boardroom Strategy">
                     <span class="service-tag">Non-Technical Academic Content</span>
-                    <h3>Humanities & Media Solutions</h3>
-                    <p>Strategic narrative curation, informational layouts, and comprehensive copy assets designed for social studies, communication streams, and institutional curriculum alignment.</p>
+                    <h3>Business & Strategic Management</h3>
+                    <p>High-level administrative documentation layouts, corporate reviews, and management framework editing:</p>
+                    
+                    <div class="tech-modules-list">
+                        <div class="tech-module-item">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=80&q=80" alt="Charts Summary">
+                            <div class="module-details">
+                                <h4>Business Report</h4>
+                                <p>Analytical formatting and standard management summaries</p>
+                            </div>
+                        </div>
+                        <div class="tech-module-item">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1521791136368-1a46827d3ad4?auto=format&fit=crop&w=80&q=80" alt="Team Consultation">
+                            <div class="module-details">
+                                <h4>Human Resource Management</h4>
+                                <p>Workforce strategy framing and policy layout structures</p>
+                            </div>
+                        </div>
+                        <div class="tech-module-item">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=80&q=80" alt="Digital Dashboard Simulation">
+                            <div class="module-details">
+                                <h4>Business Simulation Based Report</h4>
+                                <p>Data-driven operational metrics and executive results layouts</p>
+                            </div>
+                        </div>
+                        <div class="tech-module-item">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=80&q=80" alt="Project Execution Board">
+                            <div class="module-details">
+                                <h4>Project Management</h4>
+                                <p>PMBOK-aligned execution matrices and framework reviews</p>
+                            </div>
+                        </div>
+                        <div class="tech-module-item">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=80&q=80" alt="Organizational Culture Group">
+                            <div class="module-details">
+                                <h4>Organizational Behavior (OB) Reports</h4>
+                                <p>Cultural analysis schemas and workplace dynamic reporting</p>
+                            </div>
+                        </div>
+                        <div class="tech-module-item">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=80&q=80" alt="Strategic Strategy Matrix">
+                            <div class="module-details">
+                                <h4>Strategic Management Case Studies</h4>
+                                <p>Competitive landscape breakdowns and business case modeling</p>
+                            </div>
+                        </div>
+                        <div class="tech-module-item">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=80&q=80" alt="Warehouse Logistics">
+                            <div class="module-details">
+                                <h4>Supply Chain & Operations Reports</h4>
+                                <p>Logistical framework mapping and efficiency optimization layouts</p>
+                            </div>
+                        </div>
+                        <div class="tech-module-item">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=80&q=80" alt="CSR Ecological Planning">
+                            <div class="module-details">
+                                <h4>Corporate Social Responsibility (CSR) Reports</h4>
+                                <p>Sustainability auditing designs and compliance documentation</p>
+                            </div>
+                        </div>
+                        <div class="tech-module-item">
+                            <img class="module-thumb" src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=80&q=80" alt="Accounting Balances">
+                            <div class="module-details">
+                                <h4>Financial Management & Accounting Analysis</h4>
+                                <p>Balance configuration assistance and fiscal assessment schemas</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Service Card 3 -->
                 <div class="service-card dissertation">
+                    <img class="card-banner-img" src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=500&q=80" alt="Academic Archival Library Books">
                     <span class="service-tag">Dissertation / Thesis</span>
                     <h3>Advanced Research Architecture</h3>
                     <p>Structural consulting, research methodology layout curation, and scholarly editing blueprints meticulously engineered to meet demanding institutional frameworks.</p>
                 </div>
             </div>
 
-            <!-- Dynamic Accordion Dropdowns to Break Up Content Boredom -->
             <div class="faq-wrapper">
                 <div class="accordion-item">
                     <button class="accordion-header" onclick="toggleAccordion(this)">
@@ -596,7 +725,6 @@
             </div>
         </section>
 
-        <!-- Contact Form Ecosystem -->
         <section id="contact" class="reveal">
             <h2 class="section-title">Initiate Engagement</h2>
             <div class="contact-container">
@@ -616,7 +744,6 @@
                 
                 <form action="https://api.web3forms.com/submit" method="POST">
                     <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
-                    
                     <input type="text" name="name" placeholder="Name or Corporate Entity" required>
                     <input type="email" name="email" placeholder="Email Gateway" required>
                     
@@ -640,62 +767,41 @@
     </footer>
 
     <script>
-        // Dynamic Scroll Header States
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
         });
 
-        // Dynamic Filtering Execution
         function filterSelection(e, c) {
             var x, i;
             x = document.getElementsByClassName("service-card");
             if (c == "all") c = "";
             for (i = 0; i < x.length; i++) {
                 x[i].style.display = "none";
-                if (x[i].className.indexOf(c) > -1) {
-                    x[i].style.display = "block";
-                }
+                if (x[i].className.indexOf(c) > -1) x[i].style.display = "block";
             }
             var btns = document.getElementsByClassName("filter-btn");
-            for (i = 0; i < btns.length; i++) {
-                btns[i].classList.remove("active");
-            }
-            if (e && e.currentTarget) {
-                e.currentTarget.classList.add("active");
-            }
+            for (i = 0; i < btns.length; i++) btns[i].classList.remove("active");
+            if (e && e.currentTarget) e.currentTarget.classList.add("active");
         }
 
-        // Dynamic Interactive Accordion Function
         function toggleAccordion(element) {
             element.classList.toggle("active");
             const content = element.nextElementSibling;
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
+            if (content.style.maxHeight) content.style.maxHeight = null;
+            else content.style.maxHeight = content.scrollHeight + "px";
         }
 
-        // Dynamic Reveal on Scroll Engine
         const revealElements = document.querySelectorAll('.reveal');
         const revealOnScroll = () => {
             for (let i = 0; i < revealElements.length; i++) {
                 let windowHeight = window.innerHeight;
                 let elementTop = revealElements[i].getBoundingClientRect().top;
-                let elementVisible = 100;
-                
-                if (elementTop < windowHeight - elementVisible) {
-                    revealElements[i].classList.add('visible');
-                }
+                if (elementTop < windowHeight - 100) revealElements[i].classList.add('visible');
             }
         }
         window.addEventListener('scroll', revealOnScroll);
-        // Initial execution check
         revealOnScroll();
     </script>
 </body>
