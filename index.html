@@ -254,7 +254,7 @@
             transition: filter 0.5s ease, transform 0.5s ease;
         }
 
-        /* Smooth transition triggers handled via scroll boundaries */
+        /* Smooth contrast clear when text reading module completes */
         .about-showcase-wrapper.scroll-complete .about-showcase-bg {
             filter: brightness(1) contrast(1);
             transform: scale(1);
@@ -270,9 +270,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
-            background: rgba(0, 0, 0, 0.4);
-            transition: background 0.5s ease, opacity 0.5s ease;
+            padding: 0 2rem;
+            background: rgba(0, 0, 0, 0.45);
+            transition: background 0.5s ease;
         }
         
         .about-showcase-wrapper.scroll-complete .about-showcase-overlay {
@@ -282,9 +282,10 @@
         .about-scroller-box {
             max-width: 850px;
             width: 100%;
-            max-height: 420px;
+            height: 100%; /* Spans full wrapper height to lock down exact viewport sizing */
             overflow-y: scroll;
-            padding: 6rem 3rem; /* Expanded lateral padding to prevent scaling clipping bugs */
+            /* Large top/bottom padding places the first/last lines cleanly in the center viewport */
+            padding: 220px 3rem; 
             text-align: center;
             
             -ms-overflow-style: none;  
@@ -292,16 +293,10 @@
             
             -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
             mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
-            transition: opacity 0.4s ease;
         }
 
         .about-scroller-box::-webkit-scrollbar {
             display: none; 
-        }
-        
-        .about-showcase-wrapper.scroll-complete .about-scroller-box {
-            opacity: 0; 
-            pointer-events: none;
         }
 
         .about-scroller-box p {
@@ -312,21 +307,32 @@
         .about-scroller-box span {
             display: block;
             color: #ffffff;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             line-height: 1.8;
             font-weight: 700;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
-            opacity: 0.2;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+            opacity: 0.15;
             transform: scale(0.92);
-            transition: transform 0.35s ease, opacity 0.35s ease, color 0.35s ease;
+            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.35s ease, color 0.35s ease;
         }
 
         /* Active line status descriptor styles */
         .about-scroller-box span.line-focus {
             opacity: 1;
-            transform: scale(1.1);
+            transform: scale(1.12);
             color: #ffffff;
+        }
+
+        /* When scrolling completes, fade lines out cleanly without destroying container physics */
+        .about-showcase-wrapper.scroll-complete .about-scroller-box span {
+            opacity: 0 !important;
+            transform: scale(0.9) !important;
+        }
+        
+        /* Ensure the current active line stays focused and visible if not yet fully completed */
+        .about-showcase-wrapper.scroll-complete .about-scroller-box span.line-focus {
+            opacity: 0 !important;
         }
 
         /* Filter UI */
@@ -569,7 +575,7 @@
             nav { display: none; }
             .bg-watermark { width: 60vw; }
             .about-showcase-wrapper { height: 500px; }
-            .about-scroller-box { max-height: 340px; padding: 4rem 1.5rem; }
+            .about-scroller-box { padding: 180px 1.5rem; }
             .about-scroller-box span { font-size: 1.1rem; line-height: 1.8; }
         }
 
@@ -906,6 +912,7 @@
 
         function evaluateTextFocus() {
             const boxBounds = scrollerBox.getBoundingClientRect();
+            // Core scanning threshold set exactly at the mathematical center horizon line
             const boxCenter = boxBounds.top + (boxBounds.height / 2);
 
             textLines.forEach(line => {
@@ -913,7 +920,7 @@
                 const lineCenter = lineBounds.top + (lineBounds.height / 2);
                 const offsetDistance = Math.abs(boxCenter - lineCenter);
 
-                // Focus window optimized specifically for line-by-line sizing changes
+                // Tight focal window handles scaling precisely when directly centered
                 if (offsetDistance < 60) {
                     line.classList.add('line-focus');
                 } else {
@@ -924,16 +931,19 @@
             const currentScroll = scrollerBox.scrollTop;
             const maxScroll = scrollerBox.scrollHeight - scrollerBox.clientHeight;
             
-            // Reversible layout triggers: scrolling back up instantly restores filter & lines
-            if (maxScroll - currentScroll <= 15) {
+            // Reversible check: only triggers completion when user is right at the bottom edge
+            if (maxScroll > 0 && maxScroll - currentScroll <= 12) {
                 aboutShowcase.classList.add('scroll-complete');
             } else {
+                // Instantly brings the dark panel filter and line elements back when user scrolls up
                 aboutShowcase.classList.remove('scroll-complete');
             }
         }
 
         scrollerBox.addEventListener('scroll', evaluateTextFocus);
         window.addEventListener('resize', evaluateTextFocus);
+        
+        // Initial kick-off to register baseline alignments right away
         evaluateTextFocus();
 
         function filterSelection(e, c) {
