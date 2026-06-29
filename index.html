@@ -3,1091 +3,701 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excedence | Academic Content Solutions & Research Assistance</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Technical Solutions - Rate Card | Excedence</title>
+    <!-- Tailwind CSS Engine CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter integration -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-base: #f4f7fa;          
-            --bg-card: #ffffff;          
-            --text-main: #0f172a;        
-            --text-muted: #475569;       
-            --accent-blue: #1e3a8a;      
-            --accent-glow: #dbeafe;      
-            --border-subtle: #e2e8f0;    
-            --max-width: 1200px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-base);
-            color: var(--text-main);
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Fixed Background Watermark Logo */
-        .bg-watermark {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 30vw;
-            max-width: 400px;
-            height: auto;
-            z-index: -1; 
-            opacity: 0.05; 
-            pointer-events: none; 
-            user-select: none;
-            transition: opacity 0.1s linear; 
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Navigation */
-        header {
-            border-bottom: 1px solid var(--border-subtle);
-            position: sticky;
-            top: 0;
-            background: rgba(244, 247, 250, 0.85); 
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
-
-        header.scrolled {
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
-            border-bottom-color: transparent;
-        }
-
-        .nav-container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 2rem;
-        }
-
-        .brand-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--accent-blue);
-            font-weight: 700;
-            font-size: 1.3rem;
-            letter-spacing: -0.5px;
-            z-index: 102;
-        }
-
-        .brand-logo img {
-            height: 38px; 
-            width: auto;
-            object-fit: contain;
-        }
-
-        /* Nav Links Menu */
-        nav {
-            display: flex;
-            align-items: center;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text-muted);
-            margin-left: 2.5rem;
-            font-size: 0.95rem;
-            font-weight: 600;
-            transition: color 0.25s ease;
-            position: relative;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--accent-blue);
-            transition: width 0.25s ease;
-        }
-
-        nav a:hover { color: var(--accent-blue); }
-        nav a:hover::after { width: 100%; }
-
-        /* Mobile Hamburger Icon */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 24px;
-            height: 18px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            z-index: 102;
-        }
-
-        .menu-toggle span {
-            width: 100%;
-            height: 2px;
-            background-color: var(--text-main);
-            transition: all 0.3s ease;
-            border-radius: 2px;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 11rem 2rem 9rem 2rem;
-            text-align: center;
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            font-weight: 800;
-            letter-spacing: -2.5px;
-            line-height: 1.15;
-            margin-bottom: 2rem;
-            color: var(--text-main);
-        }
-
-        .hero h1 span {
-            color: var(--accent-blue);
-            background: linear-gradient(120deg, var(--accent-blue), #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.35rem;
-            color: var(--text-muted);
-            max-width: 760px;
-            margin: 0 auto 3.5rem auto;
-            font-weight: 400;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--accent-blue);
-            color: #fff;
-            padding: 1.1rem 2.6rem;
-            text-decoration: none;
-            font-size: 1rem;
-            border-radius: 8px;
-            font-weight: 600;
-            box-shadow: 0 4px 14px rgba(30, 58, 138, 0.2);
-            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-            white-space: nowrap;
-        }
-
-        .cta-button.secondary {
-            background-color: var(--bg-card);
-            color: var(--accent-blue);
-            border: 1px solid var(--border-subtle);
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
-        }
-
-        .cta-button.secondary:hover {
-            background-color: var(--accent-glow);
-            border-color: rgba(30, 58, 138, 0.2);
-        }
-
-        /* Layout Sections */
-        section {
-            padding: 8rem 2rem;
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 4rem;
-            position: relative;
-            display: inline-block;
-            color: var(--text-main);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -10px;
-            width: 60px;
-            height: 4px;
-            background-color: var(--accent-blue);
-            border-radius: 2px;
-        }
-
-        /* About Showcase Immersive Section Styling */
-        .about-showcase-wrapper {
-            position: relative;
-            width: 100%;
-            height: 600px;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
-            border: 1px solid var(--border-subtle);
-            background: #000;
-        }
-
-        .about-showcase-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: scale(1.02);
-            filter: brightness(0.22) contrast(1.05);
-            z-index: 1;
-            transition: filter 0.5s ease, transform 0.5s ease;
-        }
-
-        .about-showcase-wrapper.scroll-complete .about-showcase-bg {
-            filter: brightness(1) contrast(1);
-            transform: scale(1);
-        }
-
-        .about-showcase-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 2rem;
-            background: rgba(0, 0, 0, 0.45);
-            transition: background 0.5s ease;
-        }
-        
-        .about-showcase-wrapper.scroll-complete .about-showcase-overlay {
-            background: rgba(0, 0, 0, 0);
-        }
-
-        .about-scroller-box {
-            max-width: 850px;
-            width: 100%;
-            height: 100%; 
-            overflow-y: scroll;
-            padding: 240px 3rem; 
-            text-align: center;
-            
-            -ms-overflow-style: none;  
-            scrollbar-width: none;     
-            
-            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
-            mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
-        }
-
-        .about-scroller-box::-webkit-scrollbar {
-            display: none; 
-        }
-
-        .about-scroller-box p {
-            margin-bottom: 2.5rem;
-        }
-
-        .about-scroller-box span {
-            display: block;
-            color: #ffffff;
-            font-size: 1.35rem;
-            line-height: 1.8;
-            font-weight: 700;
-            margin-bottom: 2.5rem;
-            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
-            opacity: 0.15;
-            transform: scale(0.92);
-            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.35s ease, color 0.35s ease;
-        }
-
-        .about-scroller-box span.line-focus {
-            opacity: 1;
-            transform: scale(1.1);
-            color: #ffffff;
-        }
-
-        .about-showcase-wrapper.scroll-complete .about-scroller-box span {
-            opacity: 0 !important;
-            transform: scale(0.9) !important;
-        }
-        
-        .about-showcase-wrapper.scroll-complete .about-scroller-box span.line-focus {
-            opacity: 0 !important;
-        }
-
-        /* Filter UI */
-        .filter-container {
-            display: flex;
-            gap: 0.8rem;
-            margin-bottom: 3.5rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            color: var(--text-muted);
-            padding: 0.75rem 1.8rem;
-            font-family: inherit;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 30px;
-            transition: all 0.3s;
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            background: var(--accent-blue);
-            color: white;
-            border-color: var(--accent-blue);
-        }
-
-        /* Services Grid Layout */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-            align-items: start;
-        }
-
-        .service-card.dissertation {
-            grid-column: span 2;
-        }
-
-        .service-card {
-            background: var(--bg-card);
-            padding: 3rem 2.5rem;
-            border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(30, 58, 138, 0.15);
-            box-shadow: 0 20px 30px rgba(30, 58, 138, 0.05);
-        }
-
-        .card-banner-img {
-            width: 100%;
-            height: 280px; 
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border: 1px solid var(--border-subtle);
-        }
-
-        /* Inner Content Matrix */
-        .tech-modules-list {
-            margin-top: 1.5rem;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.2rem;
-        }
-
-        .tech-module-item {
-            background: var(--bg-base);
-            padding: 1.2rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-blue);
-            display: flex;
-            gap: 1.2rem;
-            align-items: center; 
-        }
-
-        .module-thumb {
-            width: 75px;   
-            height: 75px;  
-            object-fit: cover;
-            border-radius: 6px;
-            flex-shrink: 0;
-            border: 1px solid rgba(15, 23, 42, 0.08);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        .module-details {
-            flex-grow: 1;
-        }
-
-        .tech-module-item h4 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 0.25rem;
-        }
-
-        .tech-module-item p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        .service-tag {
-            display: inline-block;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-            margin-bottom: 1.2rem;
-            color: var(--accent-blue);
-            background: var(--accent-glow);
-            padding: 0.25rem 0.8rem;
-            border-radius: 4px;
-        }
-
-        .service-card h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--text-main);
-        }
-
-        .service-card > p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        /* FAQ Accordion */
-        .faq-wrapper {
-            margin-top: 5rem;
-            background: var(--bg-card);
-            border-radius: 12px;
-            border: 1px solid var(--border-subtle);
-            padding: 1rem;
-        }
-
-        .accordion-item { border-bottom: 1px solid var(--border-subtle); }
-        .accordion-item:last-child { border-bottom: none; }
-
-        .accordion-header {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem;
-            background: none;
-            border: none;
-            text-align: left;
-            font-family: inherit;
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--text-main);
-            cursor: pointer;
-        }
-
-        .accordion-header .icon {
-            font-size: 1.4rem;
-            transition: transform 0.3s ease;
-            color: var(--accent-blue);
-        }
-
-        .accordion-header.active .icon { transform: rotate(45deg); }
-
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
-            padding: 0 1.5rem;
-        }
-
-        .accordion-content p {
-            padding-bottom: 1.5rem;
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
-
-        /* Contact Section */
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 5rem;
-        }
-
-        .contact-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            padding: 3rem 2.5rem;
-            border-radius: 12px;
-        }
-
-        .contact-link {
-            color: var(--accent-blue);
-            font-weight: 600;
-            text-decoration: none;
-            word-break: break-all;
-        }
-
-        form { display: flex; flex-direction: column; }
-
-        input, textarea, select {
-            font-family: inherit;
-            border: 1px solid var(--border-subtle);
-            padding: 1.1rem;
-            margin-bottom: 1.2rem;
-            border-radius: 8px;
-            font-size: 1rem;
-            outline: none;
-            background: var(--bg-base);
-        }
-
-        input:focus, textarea:focus, select:focus {
-            border-color: var(--accent-blue);
-            background: var(--bg-card);
-            box-shadow: 0 0 0 4px var(--accent-glow);
-        }
-
-        form button {
-            font-family: inherit;
-            background: var(--accent-blue);
-            color: white;
-            border: none;
-            padding: 1.1rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background 0.2s;
-        }
-
-        form button:hover {
-            background: #1d4ed8;
-        }
-
-        footer {
-            background: var(--text-main);
-            padding: 3.5rem 2rem;
-            text-align: center;
-            font-size: 0.95rem;
-            color: #94a3b8;
-        }
-
-        /* --- RESPONSIVENESS MEDIA QUERIES --- */
-
-        @media (max-width: 1024px) {
-            .hero h1 { font-size: 3.8rem; }
-            .services-grid { gap: 2rem; }
-            .service-card { padding: 2.5rem 2rem; }
-        }
-
-        @media (max-width: 768px) {
-            /* Mobile Navigation Overhaul */
-            .menu-toggle {
-                display: flex;
-            }
-
-            nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 75%;
-                max-width: 300px;
-                height: 100vh;
-                background: var(--bg-card);
-                box-shadow: -10px 0 30px rgba(0,0,0,0.05);
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 7rem 2rem 2rem 2rem;
-                transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-                z-index: 101;
-            }
-
-            nav.active {
-                right: 0;
-            }
-
-            nav a {
-                margin-left: 0;
-                margin-bottom: 2.5rem;
-                font-size: 1.2rem;
-                width: 100%;
-            }
-
-            /* Hamburger animation mechanics */
-            .menu-toggle.active span:nth-child(1) {
-                transform: translateY(8px) rotate(45deg);
-            }
-            .menu-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-            .menu-toggle.active span:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
-            }
-
-            /* Main Layout Adaptations */
-            section { padding: 5rem 1.5rem; }
-            .hero { padding: 8rem 1.5rem 6rem 1.5rem; }
-            .hero h1 { font-size: 2.6rem; letter-spacing: -1.5px; }
-            .hero p { font-size: 1.15rem; margin-bottom: 2.5rem; }
-            .section-title { font-size: 2rem; margin-bottom: 3rem; }
-
-            /* Immersive Scroller Container Scaling */
-            .about-showcase-wrapper { height: 460px; }
-            .about-scroller-box { padding: 160px 1.5rem; }
-            .about-scroller-box span { font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem; }
-
-            /* Grid Collapsing Layouts */
-            .services-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .service-card.dissertation { grid-column: span 1; }
-            .card-banner-img { height: 200px; margin-bottom: 1.5rem; }
-
-            .contact-container { grid-template-columns: 1fr; gap: 3rem; }
-            .contact-box { padding: 2rem 1.5rem; }
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(229, 231, 235, 0.5);
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
 
-    <!-- Watermark Container -->
-    <img id="watermark" class="bg-watermark" src="logo.png" alt="Excedence Watermark" onerror="this.style.display='none';">
-
-    <header id="navbar">
-        <div class="nav-container">
-            <a href="#" class="brand-logo">
-                <img src="logo.png" alt="Excedence Logo" onerror="this.style.display='none';">
-                <span>EXCEDENCE</span>
+    <!-- Header Navigation Matrix -->
+    <header class="sticky top-0 z-40 w-full glass-panel border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="h-9 w-9 bg-gradient-to-tr from-indigo-600 to-blue-500 rounded-lg flex items-center justify-center shadow-md shadow-indigo-500/20">
+                    <span class="text-white font-bold text-lg">E</span>
+                </div>
+                <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">Excedence Pricing Dashboard</span>
+            </div>
+            <a href="index.html" class="flex items-center gap-1.5 text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors py-2 px-4 rounded-lg hover:bg-slate-100">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Return to Home
             </a>
-            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Mobile Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <nav id="navMenu">
-                <a href="#about">About</a>
-                <a href="#services">Our Services</a>
-                <a href="#contact">Contact</a>
-            </nav>
         </div>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero reveal">
-            <h1><span>Exceeding Intelligence...</span></h1>
-            <p>We deliver elite professional content layout ecosystems alongside structured technical education blueprints tailored specifically for institutional frameworks.</p>
-            <div class="cta-buttons">
-                <a href="#contact" class="cta-button">Engage Services</a>
-                <a href="#services" class="cta-button secondary">Our Services</a>
-            </div>
-        </section>
-
-        <!-- Dynamic High-Resolution About Section Layout -->
-        <section id="about" class="reveal">
-            <h2 class="section-title">About Our Enterprise</h2>
-            <div class="about-showcase-wrapper" id="aboutShowcase">
-                <img class="about-showcase-bg" src="excedence home.jpeg" alt="Excedence Core Workspace Architecture">
-                
-                <div class="about-showcase-overlay">
-                    <div class="about-scroller-box" id="scrollerBox">
-                        <p>
-                            <span>Excedence operates as a premier academic content solutions and research consultation firm.</span>
-                            <span>We specialize in high-level document architecture, structural layout configuration, and scholarly editing blueprints across a vast matrix of technical and non-technical disciplines.</span>
-                            <span>Our mission is to transform complex research, data analyses, and management frameworks into authoritative, publication-ready academic assets that seamlessly meet demanding global institutional standards.</span>
-                        </p>
-                        <p>
-                            <span>Parallel to our advanced research support, we engineer and deliver syllabus-aligned technical education and IT training architectures.</span>
-                            <span>By bridging the gap between sophisticated postgraduate research consulting and foundational technology education, Excedence serves a dual mission: empowering scholars with academic authority while equipping the next generation of students with essential technological mastery.</span>
-                        </p>
-                        <p>
-                            <span>Through absolute precision, adaptive structural paradigms, and deep technical resource alignments, we ensure that every framework deployed or corporate file curated carries standard structural authority.</span>
-                            <span>We balance enterprise operational capability with technical precision to shape the communication standards of tomorrow.</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="reveal">
-            <h2 class="section-title">Our Services</h2>
+    <!-- Main Dynamic Frame -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        
+        <!-- Hero Information Block -->
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-xs font-bold tracking-widest text-indigo-600 uppercase bg-indigo-50 px-3 py-1.5 rounded-full">Official Rate Matrix</span>
+            <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight mt-3 mb-4 sm:text-5xl">Engineered Project Estimates</h1>
+            <p class="text-lg text-slate-600">Transparent pricing schedules extracted directly from our development guidelines. Select a domain category to browse live technical project capabilities.</p>
             
-            <div class="filter-container">
-                <button class="filter-btn active" onclick="filterSelection(event, 'all')">All Frameworks</button>
-                <button class="filter-btn" onclick="filterSelection(event, 'technical')">Technical Academic Content</button>
-                <button class="filter-btn" onclick="filterSelection(event, 'non-technical')">Non-Technical Content</button>
-                <button class="filter-btn" onclick="filterSelection(event, 'dissertation')">Dissertation / Thesis</button>
+            <!-- Global Interactive Filter Entry -->
+            <div class="mt-8 max-w-md mx-auto relative">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+                <input type="text" id="matrixSearch" onkeyup="filterPricingCards()" placeholder="Search tools or architectures (e.g., Python, Cloud, Ansys)..." class="block w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm shadow-sm transition-all placeholder:text-slate-400">
             </div>
+        </div>
 
-            <div class="services-grid">
-                
-                <!-- Service Card 1: Technical Academic Content -->
-                <div class="service-card technical">
-                    <img class="card-banner-img" src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80" alt="Advanced Tech and Robotics Systems">
-                    <span class="service-tag">Technical Academic Content</span>
-                    <h3>Engineering & Systems Expertise</h3>
-                    <p>Comprehensive layout configuration and domain-specific assistance across specialized technical streams:</p>
-                    
-                    <div class="tech-modules-list">
-                        <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=150&q=80" alt="Data Analytics Integration">
-                            <div class="module-details">
-                                <h4>Data Analysis</h4>
-                                <p>SPSS, Power BI, Tableau, Python</p>
-                            </div>
-                        </div>
-                        <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?auto=format&fit=crop&w=150&q=80" alt="AI Logic and Neural Infrastructure Grid">
-                            <div class="module-details">
-                                <h4>Machine Learning</h4>
-                                <p>Python, MATLAB, Cloud Servers (AWS, Azure)</p>
-                            </div>
-                        </div>
-                        <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=150&q=80" alt="Security Terminal Matrices">
-                            <div class="module-details">
-                                <h4>Ethical Hacking</h4>
-                                <p>VMware, Kali, Parrot, OS Servers</p>
-                            </div>
-                        </div>
-                        <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=150&q=80" alt="Networking Equipment">
-                            <div class="module-details">
-                                <h4>Networking</h4>
-                                <p>Cisco Packet Tracer, NetSim</p>
-                            </div>
-                        </div>
-                        <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=150&q=80" alt="3D CAD Modelling Blueprint">
-                            <div class="module-details">
-                                <h4>Mechanical Design</h4>
-                                <p>SolidWorks, Star CCM+, Creo, CATIA, MATLAB, AutoCAD</p>
-                            </div>
-                        </div>
-                        <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=150&q=80" alt="Civil Blueprints and Layouts">
-                            <div class="module-details">
-                                <h4>Civil Design</h4>
-                                <p>AutoCAD, Revit, SPACEgass, STAAD.Pro, ETABs</p>
-                            </div>
-                        </div>
-                        <div class="tech-module-item">
-                            <img class="module-thumb" src="http://googleusercontent.com/image_collection/image_retrieval/16512901393130759395" alt="Circuit Schematics Mapping PCB">
-                            <div class="module-details">
-                                <h4>Electrical/Electronic Designs</h4>
-                                <p>Simulink, LTspice, QSPICE, TinyCAD, NI Multisim, AutoCAD Electrical</p>
-                            </div>
-                        </div>
-                        <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&w=150&q=80" alt="Digital Forensics Interfaces">
-                            <div class="module-details">
-                                <h4>Digital Forensics</h4>
-                                <p>Autopsy, FTK Tool Manager</p>
-                            </div>
-                        </div>
-                        <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=150&q=80" alt="Programming Engineering Code">
-                            <div class="module-details">
-                                <h4>Object Oriented Programming</h4>
-                                <p>Java, Kotlin</p>
-                            </div>
-                        </div>
-                        <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&q=80" alt="Figma UI/UX Framework Canvas">
-                            <div class="module-details">
-                                <h4>UX/UI Prototyping</h4>
-                                <p>Figma Design Canvas</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service Card 2: Non-Technical Academic Content -->
-                <div class="service-card non-technical">
-                    <img class="card-banner-img" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80" alt="Corporate Boardroom Strategy Suite">
-                    <span class="service-tag">Non-Technical Academic Content</span>
-                    <h3>Business & Strategic Management</h3>
-                    <p>High-level administrative documentation layouts, corporate reviews, and management framework editing:</p>
-                    
-                    <div class="tech-modules-list">
-                        <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=150&q=80" alt="Charts Summary Matrix">
-                            <div class="module-details">
-                                <h4>Business Report</h4>
-                                <p>Analytical formatting and standard management summaries</p>
-                            </div>
-                        </div>
-                        <div class="tech-module-item">
-                            <img class="module-thumb" src="http://googleusercontent.com/image_collection/image_retrieval/11984611499661546896" alt="Team Consultation Strategy">
-                            <div class="module-details">
-                                <h4>Human Resource Management</h4>
-                                <p>Workforce strategy framing and policy layout structures</p>
-                            </div>
-                        </div>
-                        <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=150&q=80" alt="Digital Dashboard Simulation Interface">
-                            <div class="module-details">
-                                <h4>Business Simulation Based Report</h4>
-                                <p>Data-driven operational metrics and executive results layouts</p>
-                            </div>
-                        </div>
-                        <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=150&q=80" alt="Project Execution Framework Board">
-                            <div class="module-details">
-                                <h4>Project Management</h4>
-                                <p>PMBOK-aligned execution matrices and framework reviews</p>
-                            </div>
-                        </div>
-                        <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=150&q=80" alt="Organizational Culture Dynamics Group">
-                            <div class="module-details">
-                                <h4>Organizational Behavior (OB) Reports</h4>
-                                <p>Cultural analysis schemas and workplace dynamic reporting</p>
-                            </div>
-                        </div>
-                        <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=150&q=80" alt="Strategic Plan and Optimization Matrix">
-                            <div class="module-details">
-                                <h4>Strategic Management Case Studies</h4>
-                                <p>Competitive landscape breakdowns and business case modeling</p>
-                            </div>
-                        </div>
-                        <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=150&q=80" alt="Warehouse Systems and Logistics">
-                            <div class="module-details">
-                                <h4>Supply Chain & Operations Reports</h4>
-                                <p>Logistical framework mapping and efficiency optimization layouts</p>
-                            </div>
-                        </div>
-                        <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=150&q=80" alt="CSR Ecological Planning Infrastructure">
-                            <div class="module-details">
-                                <h4>Corporate Social Responsibility (CSR) Reports</h4>
-                                <p>Sustainability auditing designs and compliance documentation</p>
-                            </div>
-                        </div>
-                        <div class="tech-module-item">
-                            <img class="module-thumb" src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=150&q=80" alt="Accounting Metrics Balances">
-                            <div class="module-details">
-                                <h4>Financial Management & Accounting Analysis</h4>
-                                <p>Balance configuration assistance and fiscal assessment schemas</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service Card 3: Dissertation / Thesis support framework positioning -->
-                <div class="service-card dissertation">
-                    <span class="service-tag">Dissertation / Thesis</span>
-                    <h3>Advanced Research Architecture</h3>
-                    <p>Structural consulting, research methodology layout curation, and scholarly editing blueprints meticulously engineered to meet demanding institutional frameworks.</p>
-                </div>
+        <!-- Categorized Navigational Tab Switcher -->
+        <div class="flex justify-center mb-10">
+            <div class="flex p-1 space-x-1 bg-slate-200/80 rounded-xl max-w-3xl w-full overflow-x-auto scrollbar-none shadow-inner">
+                <button onclick="switchTab('data-science')" id="tab-data-science" class="tab-btn w-full py-2.5 px-3 text-sm font-medium rounded-lg transition-all whitespace-nowrap bg-white text-slate-900 shadow-sm">Data Science & AI</button>
+                <button onclick="switchTab('engineering-cad')" id="tab-engineering-cad" class="tab-btn w-full py-2.5 px-3 text-sm font-medium rounded-lg transition-all whitespace-nowrap text-slate-600 hover:text-slate-900 hover:bg-white/50">Engineering & CAD</button>
+                <button onclick="switchTab('cloud-networks')" id="tab-cloud-networks" class="tab-btn w-full py-2.5 px-3 text-sm font-medium rounded-lg transition-all whitespace-nowrap text-slate-600 hover:text-slate-900 hover:bg-white/50">Cloud & Security</button>
+                <button onclick="switchTab('documentation')" id="tab-documentation" class="tab-btn w-full py-2.5 px-3 text-sm font-medium rounded-lg transition-all whitespace-nowrap text-slate-600 hover:text-slate-900 hover:bg-white/50">Documentation & Writing</button>
             </div>
+        </div>
 
-            <!-- FAQ Accordion -->
-            <div class="faq-wrapper">
-                <div class="accordion-item">
-                    <button class="accordion-header" onclick="toggleAccordion(this)">
-                        <span>How we maintain rigorous formatting parameters</span>
-                        <span class="icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <p>Every piece of technical and non-technical academic documentation is audited using multi-tier logical parsing architectures. We ensure absolute adherence to specialized global referencing criteria and typography rules sets.</p>
+        <!-- ================= CATEGORY: DATA SCIENCE & AI ================= -->
+        <div id="cat-data-science" class="category-panel grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="python machine learning data evaluation matrices scikit-learn pandas numpy">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Python (Machine Learning)</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
                     </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Complete source code engineering and an explanatory summary using industry standard frameworks (Pandas, NumPy, Scikit-Learn). Includes metrics and outputs.</p>
                 </div>
-                <div class="accordion-item">
-                    <button class="accordion-header" onclick="toggleAccordion(this)">
-                        <span>Operational timeline for complex structural consultation</span>
-                        <span class="icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <p>Turnaround timelines are dependent upon complexity matrices. Standard structural evaluations are processed inside 5–7 operational cycles, while detailed archival blueprints operate inside tailored schedules.</p>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹1,500</span>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="reveal">
-            <h2 class="section-title">Initiate Engagement</h2>
-            <div class="contact-container">
-                <div class="contact-box">
-                    <p style="color: var(--text-muted); margin-bottom: 2rem;">
-                        Let us know how our services can best support your corporate communications or institutional training requirements.
-                    </p>
-                    <p style="margin-bottom: 1.5rem;">
-                        <strong>Primary Communication Gateway:</strong><br>
-                        <a href="mailto:excedence.official@gmail.com" class="contact-link">excedence.official@gmail.com</a>
-                    </p>
-                    <p>
-                        <strong>Call / WhatsApp:</strong><br>
-                        <a href="https://wa.me/918240772281" target="_blank" class="contact-link">+91 82407 72281</a>
-                    </p>
+            <!-- Card 2 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="python deep learning nlp neural network cnn rnn transformers tensorflow pytorch keras">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Python (Deep Learning & NLP)</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Advanced neural network topologies (CNN, RNN, Transformers) built on Jupyter / Google Colab with comprehensive validation configurations and visualizations.</p>
                 </div>
-                
-                <form action="https://api.web3forms.com/submit" method="POST">
-                    <input type="hidden" name="access_key" value="5808cfa1-6fb7-492e-923a-df1f364b5dbb">
-                    <input type="hidden" name="subject" value="New Service Query from Excedence Website">
-                    <input type="checkbox" name="botcheck" style="display: none;">
-
-                    <input type="text" name="name" placeholder="Name or Corporate Entity" required>
-                    <input type="email" name="email" placeholder="Email Gateway" required>
-                    
-                    <select name="service_stream" required>
-                        <option value="" disabled selected>Select Core Focus</option>
-                        <option value="Technical Academic Content">Technical Academic Content</option>
-                        <option value="Non-Technical Academic Content">Non-Technical Academic Content</option>
-                        <option value="Dissertation / Thesis Support">Dissertation / Thesis Support</option>
-                        <option value="General Operational Query">General Operational Query</option>
-                    </select>
-
-                    <textarea name="message" rows="5" placeholder="Outline your programmatic requirements or project scope..." required></textarea>
-                    <button type="submit">Submit Request</button>
-                </form>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹3,500</span>
+                    </div>
+                </div>
             </div>
-        </section>
+            <!-- Card 3 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="r programming r studio statistics modeling ggplot2 tidyverse predictive clustering">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">R Programming (R Studio)</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Custom script engineering paired with analytical reports. Covers visual graphing via ggplot2/tidyverse, predictive pipelines, and hypothesis mapping.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹2,000</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="advanced r studio analytics algorithm markdown multivariate regression">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Advance R Programming</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Enterprise and publication-ready workflows in R Studio. Complex pipelines, multivariate configurations, and comprehensive automated RMarkdown documentation.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹3,500</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="matlab script algorithm core code metrics computations graphs filters">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Basic MATLAB Coding</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Functional engineering and algorithm implementations. Handles technical array parsing, numerical computations, and clean 2D/3D graphical output generation.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹2,500</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 6 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="basic statistics analytics spss excel distribution hypothesis testing t-test chi-square">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Basic Statistics Services</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Descriptive analytics, data distributions, and foundational hypothesis models (T-Tests, Chi-Squares) completed cleanly inside SPSS, Excel, or standard R environments.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹2,500</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 7 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="advance statistics modelling econometrics anova manova regression structural equation">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Advance Statistics Services</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Complex multivariate architectures: ANOVA/MANOVA, Factor Analyses, non-linear regressions, and structural equation models accompanied by methodology validation reports.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹4,500</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 8 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="tableau public dashboard BI tracking graphs reporting metrics">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Tableau (Public) Software</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Data aggregation modeling and visualization. Development of secure dashboard sheets, custom operational parameters, and interactive metric reports.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹1,500</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 9 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="power bi single dashboard business intelligence reporting analytics">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Power BI Single Dashboard</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Dedicated deployment of a structural multi-source Power BI data dashboard with integrated filtering, relationship parameters, and workflow overviews.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹1,500</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 10 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="power bi multiple dashboard enterprise data pipelines model analytics">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Power BI (Multiple Dashboards)</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Complex analytics environments involving linked dashboards, advanced DAX configurations, automated pipeline routing, and exhaustive structural reports.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹3,000</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 11 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="mysql database sql queries database administration relational data structure">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">MySQL Software Architecture</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Relational database schemas mapping, query building optimizations, script normalization constraints (1NF to 3NF), and technical deployment manuals.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹2,500</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 12 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="mongodb nosql collection structure aggregates queries json database">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">MongoDB Database Services</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Non-relational document layout designs, aggregation pipelines, JSON/BSON structural setups, clustering validations, and developer engineering logs.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹2,500</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= CATEGORY: ENGINEERING & CAD ================= -->
+        <div id="cat-engineering-cad" class="category-panel hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="basic ansys simulation structural fluid dynamics mesh generation geometry">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Basic Ansys Simulation</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Structural or fluid design processing. Includes CAD geometry importing, mesh structuring setups, and boundary constraints validation mapping.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹2,500</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="advance ansys finite element analysis cfd thermal dynamic structural solver">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Advance Ansys FEA / CFD</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">High-fidelity simulations (CFD, Thermal, Dynamic Structural Modeling). Non-linear configurations, multi-layered mesh generation tracking, and graphics validation charts.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹4,500</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="basic autocad design 2d 3d engineering blueprints isometric drafting layout">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Basic AutoCAD Services</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Drafting foundational 2D blueprints, elevation mappings, and isometric 3D models with clean layer structural controls and measurement scales.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹2,000</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="advance autocad architectural structural engineering floorplans details blocks modeling">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Advance AutoCAD Suite</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Complex mechanical part designs or multi-layered architectural structural projects, involving standard blocks setups, advanced annotations, and cross-section visualizations.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹4,500</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="tinkercad software circuits 3d design microcontroller arduino block rendering modeling">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Tinker-cad Software</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Prototyping core 3D printable designs or simulated embedded electronics schematics (Arduino systems, logical gates grids) with structured execution codes.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹1,500</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 6 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="revit software bim building information modeling structural architecture tracking rendering">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Revit Architecture / BIM</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Parametric Building Information Modeling (BIM) development, structural walls allocations, materials listing mapping, and architectural floor validations.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹2,500</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= CATEGORY: CLOUD & SECURITY ================= -->
+        <div id="cat-cloud-networks" class="category-panel hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="cloud service setup aws azure gcp virtual machine infrastructure provisioning">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Cloud Setup (AWS/Azure/GCP)</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Standard environment provisioning. Includes IAM administration, Virtual Instance hosting (EC2), secure cloud data storage setup (S3), and mapping networks.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹2,000</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="advance cloud setups automation runbooks high availability load balancing scaling networks">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Advance Cloud Automation</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Enterprise-grade cloud architectures. High availability load-balancers routing, auto-scaling rule scripts, firewalls isolation topologies, and deep analytics.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹4,500</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="kali linux virtual machine hypervisor vmware penetration testing tracking configs">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Basic Kali Linux Setup</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Hypervisor virtualization (VirtualBox/VMware), core penetration software suite tracking mappings, network configurations, and installation runbooks with screenshots.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹2,500</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="advance kali linux scripting vulnerability metrics security lab infrastructure">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Advance Kali Linux Security Labs</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Custom threat-modeling infrastructure, automated vulnerability verification setups, framework scripting integrations, and elaborate defensive testing guides.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹4,000</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="wireshark packet analysis live capture traffic monitoring telemetry filters parsing">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Basic Wireshark Packet Analysis</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Local area interface tracing, setup of capture rulesets, fundamental tracking parameters, network diagnostics reports, and simple frame telemetry charts.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹2,500</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 6 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="advance wireshark deep packet inspection hex filters forensic forensic anomalies network">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Advance Deep Packet Inspection</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Deep Packet Inspection (DPI), hex filtering scripts, isolation of malicious operational anomalies, network latency reports, and forensic data maps.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹4,000</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 7 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="cisco packet tracer nodes network topology vlan routing switches connections">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Cisco Packet Tracer (≤25 Nodes)</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Network engineering layout mapping up to 25 hardware interfaces. Structured deployment of VLAN nodes, standard routing pathways, and edge switch logic configurations.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹2,500</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 8 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="advance cisco packet tracer enterprise ospf eigrp nat access control matrix nodes">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Cisco Packet Tracer (&gt;25 Nodes)</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">1,500 Words</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Multi-tiered enterprise network scaling past 25 device nodes. Integrates dynamic routing engines (OSPF/EIGRP), NAT/PAT protocols, and deep firewall matrices.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹4,000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= CATEGORY: DOCUMENTATION & WRITING ================= -->
+        <div id="cat-documentation" class="category-panel hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="ppt services powerpoint design pitch deck presentation infographics master slides align">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">PPT & Presentation Services</h3>
+                        <span class="bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-emerald-100 whitespace-nowrap">Up to 20 Slides</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">High-impact, premium presentation design. Custom corporate or academic layouts, custom infographics tracking, layout master modifications, and typographic alignments.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Package</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹500</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="basic microsoft excel spreadsheets vlookup formulas formatting tracking charts data">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Basic Microsoft Excel</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">Standard Task</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Foundational sheet configurations, basic lookup formulas (VLOOKUP, basic logic operations), clean tabular data layouts, and introductory pie/bar chart reporting updates.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Project Base</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹500</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="advance microsoft excel macros vba dashboards complex formulas finance operations sheet">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Advance Microsoft Excel</h3>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-indigo-100 whitespace-nowrap">Advanced Task</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Advanced metrics computation: nested logical arrays, structural automation blocks, interactive visualization dashboards, pivot systems matrix setups, and data cleaning scripts.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Fixed Project Base</span>
+                        <span class="text-3xl font-extrabold text-slate-900">₹1,000</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="management copy content writing content drafting business management essays reports">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Management & Content Writing</h3>
+                        <span class="bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-blue-100 whitespace-nowrap">Flexible Scale</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">High-grade management analytical writing, business case reports, administrative summaries, and general corporate branding copywriting structures.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Metered Rate</span>
+                        <span class="text-2xl font-extrabold text-slate-900">₹0.60 <span class="text-xs font-medium text-slate-400">/ word</span></span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="technical writing services data documentation logs manual runbooks engineering reports specifications">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Technical Writing Services</h3>
+                        <span class="bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-blue-100 whitespace-nowrap">Flexible Scale</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Detailed developer documentation, mechanical/engineering systems specifications, software architecture runbooks, and algorithmic breakdown configurations.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Metered Rate</span>
+                        <span class="text-2xl font-extrabold text-slate-900">₹0.80 <span class="text-xs font-medium text-slate-400">/ word</span></span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 6 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="financial statistical writing analytics economics investment accounting statistics review">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Financial / Statistical Writing</h3>
+                        <span class="bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-blue-100 whitespace-nowrap">Flexible Scale</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Econometric interpretation reports, financial auditing summaries, structural accounting valuations data statements, and quantitative methodology discussions.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Metered Rate</span>
+                        <span class="text-2xl font-extrabold text-slate-900">₹0.70 <span class="text-xs font-medium text-slate-400">/ word</span></span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 7 -->
+            <div class="pricing-card bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1" data-keywords="health care medical writing services clinical trials life sciences biological journal data reviews">
+                <div class="p-6">
+                    <div class="flex justify-between items-start gap-4 mb-4">
+                        <h3 class="font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">Health Care & Medical Writing</h3>
+                        <span class="bg-rose-50 text-rose-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-rose-100 whitespace-nowrap">Premium Writing</span>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Clinical trial descriptions, epidemiological healthcare reports, life sciences case reviews, and academic biology research copy tailored for general healthcare frameworks.</p>
+                </div>
+                <div class="px-6 pb-6 mt-auto">
+                    <div class="pt-4 border-t border-slate-100 flex items-baseline justify-between">
+                        <span class="text-xs font-medium text-slate-400">Standard Tier</span>
+                        <span class="text-2xl font-extrabold text-slate-900">₹0.90 to ₹1.20 <span class="text-xs font-medium text-slate-400">/ word</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Master Addon Package Information Matrix -->
+        <div class="mt-16 glass-panel rounded-2xl p-6 sm:p-8 border border-slate-200">
+            <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                </svg>
+                Available Comprehensive Scope Addons
+            </h3>
+            <p class="text-sm text-slate-500 mb-6">Tailor your software package requirements with supplementary technical deliverables, as detailed inside <span class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600">Excedence_Technical_Price_new.xlsx</span>.</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex justify-between items-center">
+                    <div>
+                        <h4 class="text-sm font-semibold text-slate-800">Extra Copywriting Addon</h4>
+                        <p class="text-xs text-slate-400">Supplementary documentation</p>
+                    </div>
+                    <span class="text-sm font-bold text-slate-900 bg-white px-2.5 py-1 rounded-lg border border-slate-200/60 shadow-sm">₹350 <span class="text-[10px] text-slate-400 font-normal">/ 500w</span></span>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex justify-between items-center">
+                    <div>
+                        <h4 class="text-sm font-semibold text-slate-800">Professional Deck Slides</h4>
+                        <p class="text-xs text-slate-400">Up to 20 highly stylized slides</p>
+                    </div>
+                    <span class="text-sm font-bold text-slate-900 bg-white px-2.5 py-1 rounded-lg border border-slate-200/60 shadow-sm">₹400 <span class="text-[10px] text-slate-400 font-normal">/ total</span></span>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex justify-between items-center">
+                    <div>
+                        <h4 class="text-sm font-semibold text-slate-800">Video Walkthrough Addon</h4>
+                        <p class="text-xs text-slate-400">Step-by-step screen recording</p>
+                    </div>
+                    <span class="text-sm font-bold text-slate-900 bg-white px-2.5 py-1 rounded-lg border border-slate-200/60 shadow-sm">₹300 <span class="text-[10px] text-slate-400 font-normal">/ min</span></span>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Excedence. All rights reserved.</p>
+    <!-- Base Footer Information Matrix -->
+    <footer class="mt-auto border-t border-slate-200/60 bg-white py-6 text-center text-xs text-slate-400">
+        <p>&copy; 2026 Excedence Consulting Matrix. All proprietary data rights reserved.</p>
     </footer>
 
+    <!-- Interactive Search and Category Switcher Execution Scripts -->
     <script>
-        // Combined unified Scroll Listener
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            const watermark = document.getElementById('watermark');
-            const scrollPos = window.scrollY;
-
-            if (scrollPos > 50) navbar.classList.add('scrolled');
-            else navbar.classList.remove('scrolled');
-
-            let targetOpacity = 0.05 - (scrollPos / 350);
-            if (targetOpacity < 0) targetOpacity = 0;
-            watermark.style.opacity = targetOpacity;
-        });
-
-        // Mobile Hamburger Nav Logic
-        const menuToggle = document.getElementById('menuToggle');
-        const navMenu = document.getElementById('navMenu');
-        const navLinks = navMenu.querySelectorAll('a');
-
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                navMenu.classList.remove('active');
+        function switchTab(targetCategoryId) {
+            // Deactivate and clear styles on all available tab triggers
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-white', 'text-slate-900', 'shadow-sm');
+                btn.classList.add('text-slate-600', 'hover:text-slate-900', 'hover:bg-white/50');
             });
-        });
 
-        // Granular Line Focus Scanning + Reversible Mask Calculations
-        const scrollerBox = document.getElementById('scrollerBox');
-        const aboutShowcase = document.getElementById('aboutShowcase');
-        const textLines = scrollerBox.querySelectorAll('span');
+            // Activate specific selected layout identifier trigger
+            const selectedButton = document.getElementById(`tab-${targetCategoryId}`);
+            selectedButton.classList.remove('text-slate-600', 'hover:text-slate-900', 'hover:bg-white/50');
+            selectedButton.classList.add('bg-white', 'text-slate-900', 'shadow-sm');
 
-        function evaluateTextFocus() {
-            const boxBounds = scrollerBox.getBoundingClientRect();
-            const boxCenter = boxBounds.top + (boxBounds.height / 2);
+            // Hide all structural container elements
+            document.querySelectorAll('.category-panel').forEach(panel => {
+                panel.classList.add('hidden');
+            });
+
+            // Expose the designated selected panel grid element
+            document.getElementById(`cat-${targetCategoryId}`).classList.remove('hidden');
             
-            // Adjust threshold dynamic ranges dynamically depending on width metrics
-            const scanningWindow = window.innerWidth <= 768 ? 40 : 60;
+            // Re-trigger global keyword filter parameters to match search string context
+            filterPricingCards();
+        }
 
-            textLines.forEach(line => {
-                const lineBounds = line.getBoundingClientRect();
-                const lineCenter = lineBounds.top + (lineBounds.height / 2);
-                const offsetDistance = Math.abs(boxCenter - lineCenter);
+        function filterPricingCards() {
+            const queryValue = document.getElementById('matrixSearch').value.toLowerCase().trim();
+            
+            // Reference items matching active visible grid matrix
+            const activePanel = document.querySelector('.category-panel:not(.hidden)');
+            const targetingCards = activePanel.querySelectorAll('.pricing-card');
 
-                if (offsetDistance < scanningWindow) {
-                    line.classList.add('line-focus');
+            targetingCards.forEach(card => {
+                const searchKeywords = card.getAttribute('data-keywords') || '';
+                const computationalTitle = card.querySelector('h3').textContent.toLowerCase();
+                const textBodyContent = card.querySelector('p').textContent.toLowerCase();
+
+                if (computationalTitle.includes(queryValue) || textBodyContent.includes(queryValue) || searchKeywords.includes(queryValue)) {
+                    card.style.display = "flex";
                 } else {
-                    line.classList.remove('line-focus');
+                    card.style.display = "none";
                 }
             });
-
-            const currentScroll = scrollerBox.scrollTop;
-            const maxScroll = scrollerBox.scrollHeight - scrollerBox.clientHeight;
-            
-            if (maxScroll > 0 && maxScroll - currentScroll <= 12) {
-                aboutShowcase.classList.add('scroll-complete');
-            } else {
-                aboutShowcase.classList.remove('scroll-complete');
-            }
         }
-
-        scrollerBox.addEventListener('scroll', evaluateTextFocus);
-        window.addEventListener('resize', evaluateTextFocus);
-        evaluateTextFocus();
-
-        function filterSelection(e, c) {
-            var x, i;
-            x = document.getElementsByClassName("service-card");
-            if (c == "all") c = "";
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-                if (x[i].className.indexOf(c) > -1) x[i].style.display = "block";
-            }
-            var btns = document.getElementsByClassName("filter-btn");
-            for (i = 0; i < btns.length; i++) btns[i].classList.remove("active");
-            if (e && e.currentTarget) e.currentTarget.classList.add("active");
-        }
-
-        function toggleAccordion(element) {
-            element.classList.toggle("active");
-            const content = element.nextElementSibling;
-            if (content.style.maxHeight) content.style.maxHeight = null;
-            else content.style.maxHeight = content.scrollHeight + "px";
-        }
-
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealOnScroll = () => {
-            for (let i = 0; i < revealElements.length; i++) {
-                let windowHeight = window.innerHeight;
-                let elementTop = revealElements[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) revealElements[i].classList.add('visible');
-            }
-        }
-        window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll(); 
     </script>
 </body>
 </html>
