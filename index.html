@@ -233,11 +233,12 @@
         .about-showcase-wrapper {
             position: relative;
             width: 100%;
-            height: 520px;
+            height: 560px;
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
             border: 1px solid var(--border-subtle);
+            background: #000;
         }
 
         .about-showcase-bg {
@@ -250,9 +251,15 @@
             transform: scale(1.02);
             filter: brightness(0.22) contrast(1.05);
             z-index: 1;
+            transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Content Overlay Area with advanced dynamic mask fade rules */
+        /* Clears filters to expose natural brightness when scrolling concludes */
+        .about-showcase-wrapper.scroll-complete .about-showcase-bg {
+            filter: brightness(1) contrast(1);
+            transform: scale(1);
+        }
+
         .about-showcase-overlay {
             position: absolute;
             top: 0;
@@ -264,42 +271,62 @@
             align-items: center;
             justify-content: center;
             padding: 3rem 2rem;
+            transition: background 0.5s ease, opacity 0.5s ease;
+        }
+        
+        .about-showcase-wrapper.scroll-complete .about-showcase-overlay {
+            background: rgba(0, 0, 0, 0.15);
+            pointer-events: none; /* Allows hover through elements once read completely */
         }
 
         .about-scroller-box {
-            max-width: 780px;
+            max-width: 820px;
             width: 100%;
-            max-height: 340px;
+            max-height: 400px;
             overflow-y: scroll;
-            padding: 2.5rem 1.5rem;
+            padding: 4rem 1.5rem;
             text-align: center;
             
-            /* Hide raw scrollbars across multi-engine rendering */
             -ms-overflow-style: none;  
             scrollbar-width: none;     
             
-            /* CSS linear-gradient mask for automatic edge fading inside middle viewport */
-            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
-            mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%);
+            transition: opacity 0.5s ease;
         }
 
         .about-scroller-box::-webkit-scrollbar {
-            display: none; /* Hide Chrome/Safari scrollbar */
+            display: none; 
+        }
+        
+        .about-showcase-wrapper.scroll-complete .about-scroller-box {
+            opacity: 0; /* Gracefully remove text when presentation finishes */
         }
 
-        /* Scroller internal text rules */
+        /* Scroller internal paragraph rules for dynamic animations */
         .about-scroller-box p {
-            color: #f8fafc;
-            font-size: 1.25rem;
+            color: #ffffff;
+            font-size: 1.15rem;
             line-height: 1.9;
-            font-weight: 400;
-            margin-bottom: 2.5rem;
+            font-weight: 700; /* Bolded statement matrix */
+            margin-bottom: 3.5rem;
             letter-spacing: -0.1px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+            
+            /* Initial state before scrolling into view */
+            opacity: 0.25;
+            transform: scale(0.88);
+            transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.4s ease;
+        }
+
+        /* Dynamic focus modifier state handled by intersection engine */
+        .about-scroller-box p.in-focus {
+            opacity: 1;
+            transform: scale(1.18); /* Increases size dynamically when center aligned */
         }
 
         .about-scroller-box p:last-child {
-            margin-bottom: 0;
+            margin-bottom: 4rem; /* Buffer to allow last item to cross view center neatly */
         }
 
         /* Filter UI */
@@ -541,8 +568,8 @@
             .hero h1 { font-size: 3rem; letter-spacing: -1.5px; }
             nav { display: none; }
             .bg-watermark { width: 60vw; }
-            .about-showcase-wrapper { height: 460px; }
-            .about-scroller-box { max-height: 300px; }
+            .about-showcase-wrapper { height: 500px; }
+            .about-scroller-box { max-height: 340px; }
             .about-scroller-box p { font-size: 1.1rem; line-height: 1.8; }
         }
 
@@ -588,13 +615,13 @@
         <!-- Dynamic High-Resolution About Section Layout -->
         <section id="about" class="reveal">
             <h2 class="section-title">About Our Enterprise</h2>
-            <div class="about-showcase-wrapper">
+            <div class="about-showcase-wrapper" id="aboutShowcase">
                 <!-- Large, High-Resolution Base Image Background -->
                 <img class="about-showcase-bg" src="excedence home.jpeg" alt="Excedence Core Workspace Architecture">
                 
                 <!-- Dynamic Text Overlay Matrix Container -->
                 <div class="about-showcase-overlay">
-                    <div class="about-scroller-box">
+                    <div class="about-scroller-box" id="scrollerBox">
                         <p>
                             Excedence operates as a premier academic content solutions and research consultation firm. We specialize in high-level document architecture, structural layout configuration, and scholarly editing blueprints across a vast matrix of technical and non-technical disciplines. Our mission is to transform complex research, data analyses, and management frameworks into authoritative, publication-ready academic assets that seamlessly meet demanding global institutional standards.
                         </p>
@@ -871,6 +898,43 @@
             if (targetOpacity < 0) targetOpacity = 0;
             watermark.style.opacity = targetOpacity;
         });
+
+        // Smart Text Box In-Focus Scrolling Mechanics + Image Reveal Engine
+        const scrollerBox = document.getElementById('scrollerBox');
+        const aboutShowcase = document.getElementById('aboutShowcase');
+        const textParagraphs = scrollerBox.querySelectorAll('p');
+
+        function evaluateTextFocus() {
+            const boxBounds = scrollerBox.getBoundingClientRect();
+            const boxCenter = boxBounds.top + (boxBounds.height / 2);
+
+            textParagraphs.forEach(p => {
+                const pBounds = p.getBoundingClientRect();
+                const pCenter = pBounds.top + (pBounds.height / 2);
+                
+                // Track distance from the absolute reading center line
+                const offsetDistance = Math.abs(boxCenter - pCenter);
+
+                if (offsetDistance < 75) {
+                    p.classList.add('in-focus');
+                } else {
+                    p.classList.remove('in-focus');
+                }
+            });
+
+            // Trigger complete image clearance when reaching the bottom
+            const precisionBuffer = 20; 
+            if (scrollerBox.scrollHeight - scrollerBox.scrollTop <= scrollerBox.clientHeight + precisionBuffer) {
+                aboutShowcase.classList.add('scroll-complete');
+            } else {
+                aboutShowcase.classList.remove('scroll-complete');
+            }
+        }
+
+        // Initialize listeners and apply default layout measurements immediately
+        scrollerBox.addEventListener('scroll', evaluateTextFocus);
+        window.addEventListener('resize', evaluateTextFocus);
+        evaluateTextFocus();
 
         function filterSelection(e, c) {
             var x, i;
