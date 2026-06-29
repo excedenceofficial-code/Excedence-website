@@ -16,7 +16,7 @@
             --accent-blue: #1e3a8a;      
             --accent-glow: #dbeafe;      
             --border-subtle: #e2e8f0;    
-            --max-width: 1100px;
+            --max-width: 1200px;
         }
 
         * {
@@ -36,6 +36,7 @@
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
             position: relative;
+            overflow-x: hidden;
         }
 
         /* Fixed Background Watermark Logo */
@@ -44,7 +45,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 40vw;
+            width: 30vw;
             max-width: 400px;
             height: auto;
             z-index: -1; 
@@ -89,7 +90,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
+            padding: 1.2rem 2rem;
         }
 
         .brand-logo {
@@ -101,6 +102,7 @@
             font-weight: 700;
             font-size: 1.3rem;
             letter-spacing: -0.5px;
+            z-index: 102;
         }
 
         .brand-logo img {
@@ -109,11 +111,17 @@
             object-fit: contain;
         }
 
+        /* Nav Links Menu */
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
         nav a {
             text-decoration: none;
             color: var(--text-muted);
-            margin-left: 2.2rem;
-            font-size: 0.9rem;
+            margin-left: 2.5rem;
+            font-size: 0.95rem;
             font-weight: 600;
             transition: color 0.25s ease;
             position: relative;
@@ -133,20 +141,41 @@
         nav a:hover { color: var(--accent-blue); }
         nav a:hover::after { width: 100%; }
 
+        /* Mobile Hamburger Icon */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 18px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 102;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 2px;
+            background-color: var(--text-main);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
         /* Hero Section */
         .hero {
-            padding: 10rem 2rem 8rem 2rem;
+            padding: 11rem 2rem 9rem 2rem;
             text-align: center;
             max-width: var(--max-width);
             margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 4.2rem;
+            font-size: 4.5rem;
             font-weight: 800;
             letter-spacing: -2.5px;
-            line-height: 1.2;
-            margin-bottom: 1.8rem;
+            line-height: 1.15;
+            margin-bottom: 2rem;
             color: var(--text-main);
         }
 
@@ -158,10 +187,10 @@
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.35rem;
             color: var(--text-muted);
-            max-width: 700px;
-            margin: 0 auto 3rem auto;
+            max-width: 760px;
+            margin: 0 auto 3.5rem auto;
             font-weight: 400;
         }
 
@@ -169,19 +198,21 @@
             display: flex;
             gap: 1.2rem;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .cta-button {
             display: inline-block;
             background-color: var(--accent-blue);
             color: #fff;
-            padding: 1rem 2.4rem;
+            padding: 1.1rem 2.6rem;
             text-decoration: none;
             font-size: 1rem;
             border-radius: 8px;
             font-weight: 600;
             box-shadow: 0 4px 14px rgba(30, 58, 138, 0.2);
             transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            white-space: nowrap;
         }
 
         .cta-button.secondary {
@@ -209,9 +240,9 @@
         }
 
         .section-title {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            letter-spacing: -0.8px;
+            letter-spacing: -1px;
             margin-bottom: 4rem;
             position: relative;
             display: inline-block;
@@ -223,7 +254,7 @@
             position: absolute;
             left: 0;
             bottom: -10px;
-            width: 50px;
+            width: 60px;
             height: 4px;
             background-color: var(--accent-blue);
             border-radius: 2px;
@@ -233,7 +264,7 @@
         .about-showcase-wrapper {
             position: relative;
             width: 100%;
-            height: 560px;
+            height: 600px;
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
@@ -254,7 +285,6 @@
             transition: filter 0.5s ease, transform 0.5s ease;
         }
 
-        /* Smooth contrast clear when text reading module completes */
         .about-showcase-wrapper.scroll-complete .about-showcase-bg {
             filter: brightness(1) contrast(1);
             transform: scale(1);
@@ -282,10 +312,9 @@
         .about-scroller-box {
             max-width: 850px;
             width: 100%;
-            height: 100%; /* Spans full wrapper height to lock down exact viewport sizing */
+            height: 100%; 
             overflow-y: scroll;
-            /* Large top/bottom padding places the first/last lines cleanly in the center viewport */
-            padding: 220px 3rem; 
+            padding: 240px 3rem; 
             text-align: center;
             
             -ms-overflow-style: none;  
@@ -303,34 +332,30 @@
             margin-bottom: 2.5rem;
         }
 
-        /* Fine-grain line-by-line scroll segments */
         .about-scroller-box span {
             display: block;
             color: #ffffff;
-            font-size: 1.25rem;
+            font-size: 1.35rem;
             line-height: 1.8;
             font-weight: 700;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
             opacity: 0.15;
             transform: scale(0.92);
             transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.35s ease, color 0.35s ease;
         }
 
-        /* Active line status descriptor styles */
         .about-scroller-box span.line-focus {
             opacity: 1;
-            transform: scale(1.12);
+            transform: scale(1.1);
             color: #ffffff;
         }
 
-        /* When scrolling completes, fade lines out cleanly without destroying container physics */
         .about-showcase-wrapper.scroll-complete .about-scroller-box span {
             opacity: 0 !important;
             transform: scale(0.9) !important;
         }
         
-        /* Ensure the current active line stays focused and visible if not yet fully completed */
         .about-showcase-wrapper.scroll-complete .about-scroller-box span.line-focus {
             opacity: 0 !important;
         }
@@ -347,7 +372,7 @@
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
             color: var(--text-muted);
-            padding: 0.7rem 1.8rem;
+            padding: 0.75rem 1.8rem;
             font-family: inherit;
             font-size: 0.95rem;
             font-weight: 600;
@@ -365,14 +390,18 @@
         /* Services Grid Layout */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
             align-items: start;
+        }
+
+        .service-card.dissertation {
+            grid-column: span 2;
         }
 
         .service-card {
             background: var(--bg-card);
-            padding: 2.5rem 2rem;
+            padding: 3rem 2.5rem;
             border: 1px solid var(--border-subtle);
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
@@ -387,10 +416,10 @@
 
         .card-banner-img {
             width: 100%;
-            height: 240px; 
+            height: 280px; 
             object-fit: cover;
             border-radius: 8px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             border: 1px solid var(--border-subtle);
         }
 
@@ -453,7 +482,7 @@
         }
 
         .service-card h3 {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: 700;
             margin-bottom: 1rem;
             color: var(--text-main);
@@ -461,14 +490,14 @@
 
         .service-card > p {
             color: var(--text-muted);
-            font-size: 1rem;
+            font-size: 1.05rem;
             line-height: 1.6;
             margin-bottom: 1rem;
         }
 
         /* FAQ Accordion */
         .faq-wrapper {
-            margin-top: 4rem;
+            margin-top: 5rem;
             background: var(--bg-card);
             border-radius: 12px;
             border: 1px solid var(--border-subtle);
@@ -488,7 +517,7 @@
             border: none;
             text-align: left;
             font-family: inherit;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 600;
             color: var(--text-main);
             cursor: pointer;
@@ -525,7 +554,7 @@
         .contact-box {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
-            padding: 2rem;
+            padding: 3rem 2.5rem;
             border-radius: 12px;
         }
 
@@ -533,6 +562,7 @@
             color: var(--accent-blue);
             font-weight: 600;
             text-decoration: none;
+            word-break: break-all;
         }
 
         form { display: flex; flex-direction: column; }
@@ -540,7 +570,7 @@
         input, textarea, select {
             font-family: inherit;
             border: 1px solid var(--border-subtle);
-            padding: 1rem;
+            padding: 1.1rem;
             margin-bottom: 1.2rem;
             border-radius: 8px;
             font-size: 1rem;
@@ -559,32 +589,97 @@
             background: var(--accent-blue);
             color: white;
             border: none;
-            padding: 1rem;
+            padding: 1.1rem;
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
         }
 
-        @media (max-width: 992px) {
-            .services-grid { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 768px) {
-            .contact-container { grid-template-columns: 1fr; gap: 3rem; }
-            .hero h1 { font-size: 3rem; letter-spacing: -1.5px; }
-            nav { display: none; }
-            .bg-watermark { width: 60vw; }
-            .about-showcase-wrapper { height: 500px; }
-            .about-scroller-box { padding: 180px 1.5rem; }
-            .about-scroller-box span { font-size: 1.1rem; line-height: 1.8; }
+        form button:hover {
+            background: #1d4ed8;
         }
 
         footer {
             background: var(--text-main);
-            padding: 3rem 2rem;
+            padding: 3.5rem 2rem;
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #94a3b8;
+        }
+
+        /* --- RESPONSIVENESS MEDIA QUERIES --- */
+
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 3.8rem; }
+            .services-grid { gap: 2rem; }
+            .service-card { padding: 2.5rem 2rem; }
+        }
+
+        @media (max-width: 768px) {
+            /* Mobile Navigation Overhaul */
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--bg-card);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 7rem 2rem 2rem 2rem;
+                transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+                z-index: 101;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            nav a {
+                margin-left: 0;
+                margin-bottom: 2.5rem;
+                font-size: 1.2rem;
+                width: 100%;
+            }
+
+            /* Hamburger animation mechanics */
+            .menu-toggle.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            /* Main Layout Adaptations */
+            section { padding: 5rem 1.5rem; }
+            .hero { padding: 8rem 1.5rem 6rem 1.5rem; }
+            .hero h1 { font-size: 2.6rem; letter-spacing: -1.5px; }
+            .hero p { font-size: 1.15rem; margin-bottom: 2.5rem; }
+            .section-title { font-size: 2rem; margin-bottom: 3rem; }
+
+            /* Immersive Scroller Container Scaling */
+            .about-showcase-wrapper { height: 460px; }
+            .about-scroller-box { padding: 160px 1.5rem; }
+            .about-scroller-box span { font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem; }
+
+            /* Grid Collapsing Layouts */
+            .services-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .service-card.dissertation { grid-column: span 1; }
+            .card-banner-img { height: 200px; margin-bottom: 1.5rem; }
+
+            .contact-container { grid-template-columns: 1fr; gap: 3rem; }
+            .contact-box { padding: 2rem 1.5rem; }
         }
     </style>
 </head>
@@ -599,7 +694,12 @@
                 <img src="logo.png" alt="Excedence Logo" onerror="this.style.display='none';">
                 <span>EXCEDENCE</span>
             </a>
-            <nav>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Mobile Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="navMenu">
                 <a href="#about">About</a>
                 <a href="#services">Our Services</a>
                 <a href="#contact">Contact</a>
@@ -651,7 +751,7 @@
             <div class="filter-container">
                 <button class="filter-btn active" onclick="filterSelection(event, 'all')">All Frameworks</button>
                 <button class="filter-btn" onclick="filterSelection(event, 'technical')">Technical Academic Content</button>
-                <button class="filter-btn" onclick="filterSelection(event, 'non-technical')">Non-Technical Academic Content</button>
+                <button class="filter-btn" onclick="filterSelection(event, 'non-technical')">Non-Technical Content</button>
                 <button class="filter-btn" onclick="filterSelection(event, 'dissertation')">Dissertation / Thesis</button>
             </div>
 
@@ -812,9 +912,8 @@
                     </div>
                 </div>
 
-                <!-- Service Card 3: Dissertation / Thesis -->
+                <!-- Service Card 3: Dissertation / Thesis support framework positioning -->
                 <div class="service-card dissertation">
-                    <img class="card-banner-img" src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80" alt="Academic Archival Library Research Reference">
                     <span class="service-tag">Dissertation / Thesis</span>
                     <h3>Advanced Research Architecture</h3>
                     <p>Structural consulting, research methodology layout curation, and scholarly editing blueprints meticulously engineered to meet demanding institutional frameworks.</p>
@@ -852,7 +951,7 @@
                     <p style="color: var(--text-muted); margin-bottom: 2rem;">
                         Let us know how our services can best support your corporate communications or institutional training requirements.
                     </p>
-                    <p>
+                    <p style="margin-bottom: 1.5rem;">
                         <strong>Primary Communication Gateway:</strong><br>
                         <a href="mailto:excedence.official@gmail.com" class="contact-link">excedence.official@gmail.com</a>
                     </p>
@@ -862,7 +961,6 @@
                     </p>
                 </div>
                 
-                <!-- Production Configured Web3Forms Gateway -->
                 <form action="https://api.web3forms.com/submit" method="POST">
                     <input type="hidden" name="access_key" value="5808cfa1-6fb7-492e-923a-df1f364b5dbb">
                     <input type="hidden" name="subject" value="New Service Query from Excedence Website">
@@ -905,6 +1003,23 @@
             watermark.style.opacity = targetOpacity;
         });
 
+        // Mobile Hamburger Nav Logic
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const navLinks = navMenu.querySelectorAll('a');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
         // Granular Line Focus Scanning + Reversible Mask Calculations
         const scrollerBox = document.getElementById('scrollerBox');
         const aboutShowcase = document.getElementById('aboutShowcase');
@@ -912,16 +1027,17 @@
 
         function evaluateTextFocus() {
             const boxBounds = scrollerBox.getBoundingClientRect();
-            // Core scanning threshold set exactly at the mathematical center horizon line
             const boxCenter = boxBounds.top + (boxBounds.height / 2);
+            
+            // Adjust threshold dynamic ranges dynamically depending on width metrics
+            const scanningWindow = window.innerWidth <= 768 ? 40 : 60;
 
             textLines.forEach(line => {
                 const lineBounds = line.getBoundingClientRect();
                 const lineCenter = lineBounds.top + (lineBounds.height / 2);
                 const offsetDistance = Math.abs(boxCenter - lineCenter);
 
-                // Tight focal window handles scaling precisely when directly centered
-                if (offsetDistance < 60) {
+                if (offsetDistance < scanningWindow) {
                     line.classList.add('line-focus');
                 } else {
                     line.classList.remove('line-focus');
@@ -931,19 +1047,15 @@
             const currentScroll = scrollerBox.scrollTop;
             const maxScroll = scrollerBox.scrollHeight - scrollerBox.clientHeight;
             
-            // Reversible check: only triggers completion when user is right at the bottom edge
             if (maxScroll > 0 && maxScroll - currentScroll <= 12) {
                 aboutShowcase.classList.add('scroll-complete');
             } else {
-                // Instantly brings the dark panel filter and line elements back when user scrolls up
                 aboutShowcase.classList.remove('scroll-complete');
             }
         }
 
         scrollerBox.addEventListener('scroll', evaluateTextFocus);
         window.addEventListener('resize', evaluateTextFocus);
-        
-        // Initial kick-off to register baseline alignments right away
         evaluateTextFocus();
 
         function filterSelection(e, c) {
