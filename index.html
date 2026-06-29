@@ -35,6 +35,23 @@
             color: var(--text-main);
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        /* Fixed Background Watermark Logo */
+        .bg-watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40vw;
+            max-width: 400px;
+            height: auto;
+            z-index: -1; /* Placed safely behind all body content */
+            opacity: 0.05; /* Barely visible to ensure absolute readability */
+            pointer-events: none; /* Allows natural selection/clicking of text over it */
+            user-select: none;
+            transition: opacity 0.1s linear; /* Smooth micro-fading steps */
         }
 
         .reveal {
@@ -475,6 +492,7 @@
             .split-layout, .contact-container { grid-template-columns: 1fr; gap: 3rem; }
             .hero h1 { font-size: 3rem; letter-spacing: -1.5px; }
             nav { display: none; }
+            .bg-watermark { width: 60vw; }
         }
 
         footer {
@@ -487,6 +505,9 @@
     </style>
 </head>
 <body>
+
+    <!-- Watermark Container -->
+    <img id="watermark" class="bg-watermark" src="logo.png" alt="Excedence Watermark" onerror="this.style.display='none';">
 
     <header id="navbar">
         <div class="nav-container">
@@ -774,10 +795,21 @@
     </footer>
 
     <script>
+        // Combined unified Scroll Listener
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            const watermark = document.getElementById('watermark');
+            const scrollPos = window.scrollY;
+
+            // 1. Control Navbar class toggles
+            if (scrollPos > 50) navbar.classList.add('scrolled');
             else navbar.classList.remove('scrolled');
+
+            // 2. Control dynamic watermark fade calculation
+            // Sets starting point at 5% opacity (0.05) and scales down smoothly to 0 over 350 pixels of scrolling.
+            let targetOpacity = 0.05 - (scrollPos / 350);
+            if (targetOpacity < 0) targetOpacity = 0;
+            watermark.style.opacity = targetOpacity;
         });
 
         function filterSelection(e, c) {
@@ -809,7 +841,7 @@
             }
         }
         window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll();
+        revealOnScroll(); // Triggers check immediately on initial load configuration
     </script>
 </body>
 </html>
