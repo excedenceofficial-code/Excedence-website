@@ -47,11 +47,11 @@
             width: 40vw;
             max-width: 400px;
             height: auto;
-            z-index: -1; /* Placed safely behind all body content */
-            opacity: 0.05; /* Barely visible to ensure absolute readability */
-            pointer-events: none; /* Allows natural selection/clicking of text over it */
+            z-index: -1; 
+            opacity: 0.05; 
+            pointer-events: none; 
             user-select: none;
-            transition: opacity 0.1s linear; /* Smooth micro-fading steps */
+            transition: opacity 0.1s linear; 
         }
 
         .reveal {
@@ -770,17 +770,21 @@
                     </p>
                 </div>
                 
+                <!-- Production Configured Web3Forms Gateway -->
                 <form action="https://api.web3forms.com/submit" method="POST">
-                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                    <input type="hidden" name="access_key" value="5808cfa1-6fb7-492e-923a-df1f364b5dbb">
+                    <input type="hidden" name="subject" value="New Service Query from Excedence Website">
+                    <input type="checkbox" name="botcheck" style="display: none;">
+
                     <input type="text" name="name" placeholder="Name or Corporate Entity" required>
                     <input type="email" name="email" placeholder="Email Gateway" required>
                     
                     <select name="service_stream" required>
                         <option value="" disabled selected>Select Core Focus</option>
-                        <option value="technical_academic">Technical Academic Content</option>
-                        <option value="non_technical_academic">Non-Technical Academic Content</option>
-                        <option value="dissertation_thesis">Dissertation / Thesis Support</option>
-                        <option value="other">General Operational Query</option>
+                        <option value="Technical Academic Content">Technical Academic Content</option>
+                        <option value="Non-Technical Academic Content">Non-Technical Academic Content</option>
+                        <option value="Dissertation / Thesis Support">Dissertation / Thesis Support</option>
+                        <option value="General Operational Query">General Operational Query</option>
                     </select>
 
                     <textarea name="message" rows="5" placeholder="Outline your programmatic requirements or project scope..." required></textarea>
@@ -806,7 +810,6 @@
             else navbar.classList.remove('scrolled');
 
             // 2. Control dynamic watermark fade calculation
-            // Sets starting point at 5% opacity (0.05) and scales down smoothly to 0 over 350 pixels of scrolling.
             let targetOpacity = 0.05 - (scrollPos / 350);
             if (targetOpacity < 0) targetOpacity = 0;
             watermark.style.opacity = targetOpacity;
@@ -841,7 +844,7 @@
             }
         }
         window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll(); // Triggers check immediately on initial load configuration
+        revealOnScroll(); 
     </script>
 </body>
 </html>
