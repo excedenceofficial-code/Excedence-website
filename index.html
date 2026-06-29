@@ -229,29 +229,77 @@
             border-radius: 2px;
         }
 
-        /* About Layout */
-        .split-layout {
-            display: grid;
-            grid-template-columns: 1.1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-        }
-
-        .split-text p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 1.8rem;
-        }
-
-        .split-visual {
+        /* Interactive Showcase About Us Section */
+        .about-showcase-wrapper {
             position: relative;
+            width: 100%;
+            height: 520px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
+            border: 1px solid var(--border-subtle);
         }
 
-        .split-visual img {
+        .about-showcase-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.02);
+            filter: brightness(0.22) contrast(1.05);
+            z-index: 1;
+        }
+
+        /* Content Overlay Area with advanced dynamic mask fade rules */
+        .about-showcase-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 2rem;
+        }
+
+        .about-scroller-box {
+            max-width: 780px;
+            width: 100%;
+            max-height: 340px;
+            overflow-y: scroll;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            
+            /* Hide raw scrollbars across multi-engine rendering */
+            -ms-overflow-style: none;  
+            scrollbar-width: none;     
+            
+            /* CSS linear-gradient mask for automatic edge fading inside middle viewport */
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+        }
+
+        .about-scroller-box::-webkit-scrollbar {
+            display: none; /* Hide Chrome/Safari scrollbar */
+        }
+
+        /* Scroller internal text rules */
+        .about-scroller-box p {
+            color: #f8fafc;
+            font-size: 1.25rem;
+            line-height: 1.9;
+            font-weight: 400;
+            margin-bottom: 2.5rem;
+            letter-spacing: -0.1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .about-scroller-box p:last-child {
+            margin-bottom: 0;
         }
 
         /* Filter UI */
@@ -489,10 +537,13 @@
         }
 
         @media (max-width: 768px) {
-            .split-layout, .contact-container { grid-template-columns: 1fr; gap: 3rem; }
+            .contact-container { grid-template-columns: 1fr; gap: 3rem; }
             .hero h1 { font-size: 3rem; letter-spacing: -1.5px; }
             nav { display: none; }
             .bg-watermark { width: 60vw; }
+            .about-showcase-wrapper { height: 460px; }
+            .about-scroller-box { max-height: 300px; }
+            .about-scroller-box p { font-size: 1.1rem; line-height: 1.8; }
         }
 
         footer {
@@ -534,21 +585,26 @@
             </div>
         </section>
 
-        <!-- About Us Section -->
+        <!-- Dynamic High-Resolution About Section Layout -->
         <section id="about" class="reveal">
             <h2 class="section-title">About Our Enterprise</h2>
-            <div class="split-layout">
-                <div class="split-text">
-                    <p>
-                        Excedence operates as a premier academic content solutions and research consultation firm. We specialize in high-level document architecture, structural layout configuration, and scholarly editing blueprints across a vast matrix of technical and non-technical disciplines. Our mission is to transform complex research, data analyses, and management frameworks into authoritative, publication-ready academic assets that seamlessly meet demanding global institutional standards.
-                    </p>
-                    <p>
-                        Parallel to our advanced research support, we engineer and deliver syllabus-aligned technical education and IT training architectures. By bridging the gap between sophisticated postgraduate research consulting and foundational technology education, Excedence serves a dual mission: empowering scholars with academic authority while equipping the next generation of students with essential technological mastery.
-                    </p>
-                </div>
-                <div class="split-visual">
-                    <!-- Target image swapped to repository path -->
-                    <img src="excedence home.jpeg" alt="Excedence Workspace Architecture">
+            <div class="about-showcase-wrapper">
+                <!-- Large, High-Resolution Base Image Background -->
+                <img class="about-showcase-bg" src="excedence home.jpeg" alt="Excedence Core Workspace Architecture">
+                
+                <!-- Dynamic Text Overlay Matrix Container -->
+                <div class="about-showcase-overlay">
+                    <div class="about-scroller-box">
+                        <p>
+                            Excedence operates as a premier academic content solutions and research consultation firm. We specialize in high-level document architecture, structural layout configuration, and scholarly editing blueprints across a vast matrix of technical and non-technical disciplines. Our mission is to transform complex research, data analyses, and management frameworks into authoritative, publication-ready academic assets that seamlessly meet demanding global institutional standards.
+                        </p>
+                        <p>
+                            Parallel to our advanced research support, we engineer and deliver syllabus-aligned technical education and IT training architectures. By bridging the gap between sophisticated postgraduate research consulting and foundational technology education, Excedence serves a dual mission: empowering scholars with academic authority while equipping the next generation of students with essential technological mastery.
+                        </p>
+                        <p>
+                            Through absolute precision, adaptive structural paradigms, and deep technical resource alignments, we ensure that every framework deployed or corporate file curated carries standard structural authority. We balance enterprise operational capability with technical precision to shape the communication standards of tomorrow.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
