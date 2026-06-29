@@ -894,7 +894,8 @@
                     <p style="margin-bottom: 1rem;"><strong>Email:</strong> <br><a href="mailto:info@excedence.com" class="contact-link">info@excedence.com</a></p>
                 </div>
                 <div class="contact-box">
-                    <form action="#" method="POST">
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="5808cfa1-6fb7-492e-923a-df1f364b5dbb">
                         <input type="text" name="name" placeholder="Your Name" required>
                         <input type="email" name="email" placeholder="Your Email Address" required>
                         <select name="service-type" required>
@@ -904,6 +905,7 @@
                             <option value="dissertation">Dissertation / Thesis Blueprint</option>
                         </select>
                         <textarea name="message" rows="5" placeholder="Describe your project layout requirements..." required></textarea>
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
                         <button type="submit">Submit Inquiry Blueprint</button>
                     </form>
                 </div>
