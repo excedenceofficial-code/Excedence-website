@@ -6,7 +6,7 @@
     <title>Excedence | Academic Content Solutions & Research Assistance</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-base: #f4f7fa;          
@@ -229,7 +229,7 @@
             border-radius: 2px;
         }
 
-        /* Interactive Showcase About Us Section */
+        /* About Showcase Immersive Section Styling */
         .about-showcase-wrapper {
             position: relative;
             width: 100%;
@@ -251,10 +251,10 @@
             transform: scale(1.02);
             filter: brightness(0.22) contrast(1.05);
             z-index: 1;
-            transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: filter 0.5s ease, transform 0.5s ease;
         }
 
-        /* Clears filters to expose natural brightness when scrolling concludes */
+        /* Smooth transition triggers handled via scroll boundaries */
         .about-showcase-wrapper.scroll-complete .about-showcase-bg {
             filter: brightness(1) contrast(1);
             transform: scale(1);
@@ -270,29 +270,29 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 3rem 2rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.4);
             transition: background 0.5s ease, opacity 0.5s ease;
         }
         
         .about-showcase-wrapper.scroll-complete .about-showcase-overlay {
-            background: rgba(0, 0, 0, 0.15);
-            pointer-events: none; /* Allows hover through elements once read completely */
+            background: rgba(0, 0, 0, 0);
         }
 
         .about-scroller-box {
-            max-width: 820px;
+            max-width: 850px;
             width: 100%;
-            max-height: 400px;
+            max-height: 420px;
             overflow-y: scroll;
-            padding: 4rem 1.5rem;
+            padding: 6rem 3rem; /* Expanded lateral padding to prevent scaling clipping bugs */
             text-align: center;
             
             -ms-overflow-style: none;  
             scrollbar-width: none;     
             
-            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%);
-            mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%);
-            transition: opacity 0.5s ease;
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+            transition: opacity 0.4s ease;
         }
 
         .about-scroller-box::-webkit-scrollbar {
@@ -300,33 +300,33 @@
         }
         
         .about-showcase-wrapper.scroll-complete .about-scroller-box {
-            opacity: 0; /* Gracefully remove text when presentation finishes */
+            opacity: 0; 
+            pointer-events: none;
         }
 
-        /* Scroller internal paragraph rules for dynamic animations */
         .about-scroller-box p {
+            margin-bottom: 2.5rem;
+        }
+
+        /* Fine-grain line-by-line scroll segments */
+        .about-scroller-box span {
+            display: block;
             color: #ffffff;
-            font-size: 1.15rem;
-            line-height: 1.9;
-            font-weight: 700; /* Bolded statement matrix */
-            margin-bottom: 3.5rem;
-            letter-spacing: -0.1px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-            
-            /* Initial state before scrolling into view */
-            opacity: 0.25;
-            transform: scale(0.88);
-            transition: transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.4s ease;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+            opacity: 0.2;
+            transform: scale(0.92);
+            transition: transform 0.35s ease, opacity 0.35s ease, color 0.35s ease;
         }
 
-        /* Dynamic focus modifier state handled by intersection engine */
-        .about-scroller-box p.in-focus {
+        /* Active line status descriptor styles */
+        .about-scroller-box span.line-focus {
             opacity: 1;
-            transform: scale(1.18); /* Increases size dynamically when center aligned */
-        }
-
-        .about-scroller-box p:last-child {
-            margin-bottom: 4rem; /* Buffer to allow last item to cross view center neatly */
+            transform: scale(1.1);
+            color: #ffffff;
         }
 
         /* Filter UI */
@@ -569,8 +569,8 @@
             nav { display: none; }
             .bg-watermark { width: 60vw; }
             .about-showcase-wrapper { height: 500px; }
-            .about-scroller-box { max-height: 340px; }
-            .about-scroller-box p { font-size: 1.1rem; line-height: 1.8; }
+            .about-scroller-box { max-height: 340px; padding: 4rem 1.5rem; }
+            .about-scroller-box span { font-size: 1.1rem; line-height: 1.8; }
         }
 
         footer {
@@ -616,20 +616,22 @@
         <section id="about" class="reveal">
             <h2 class="section-title">About Our Enterprise</h2>
             <div class="about-showcase-wrapper" id="aboutShowcase">
-                <!-- Large, High-Resolution Base Image Background -->
                 <img class="about-showcase-bg" src="excedence home.jpeg" alt="Excedence Core Workspace Architecture">
                 
-                <!-- Dynamic Text Overlay Matrix Container -->
                 <div class="about-showcase-overlay">
                     <div class="about-scroller-box" id="scrollerBox">
                         <p>
-                            Excedence operates as a premier academic content solutions and research consultation firm. We specialize in high-level document architecture, structural layout configuration, and scholarly editing blueprints across a vast matrix of technical and non-technical disciplines. Our mission is to transform complex research, data analyses, and management frameworks into authoritative, publication-ready academic assets that seamlessly meet demanding global institutional standards.
+                            <span>Excedence operates as a premier academic content solutions and research consultation firm.</span>
+                            <span>We specialize in high-level document architecture, structural layout configuration, and scholarly editing blueprints across a vast matrix of technical and non-technical disciplines.</span>
+                            <span>Our mission is to transform complex research, data analyses, and management frameworks into authoritative, publication-ready academic assets that seamlessly meet demanding global institutional standards.</span>
                         </p>
                         <p>
-                            Parallel to our advanced research support, we engineer and deliver syllabus-aligned technical education and IT training architectures. By bridging the gap between sophisticated postgraduate research consulting and foundational technology education, Excedence serves a dual mission: empowering scholars with academic authority while equipping the next generation of students with essential technological mastery.
+                            <span>Parallel to our advanced research support, we engineer and deliver syllabus-aligned technical education and IT training architectures.</span>
+                            <span>By bridging the gap between sophisticated postgraduate research consulting and foundational technology education, Excedence serves a dual mission: empowering scholars with academic authority while equipping the next generation of students with essential technological mastery.</span>
                         </p>
                         <p>
-                            Through absolute precision, adaptive structural paradigms, and deep technical resource alignments, we ensure that every framework deployed or corporate file curated carries standard structural authority. We balance enterprise operational capability with technical precision to shape the communication standards of tomorrow.
+                            <span>Through absolute precision, adaptive structural paradigms, and deep technical resource alignments, we ensure that every framework deployed or corporate file curated carries standard structural authority.</span>
+                            <span>We balance enterprise operational capability with technical precision to shape the communication standards of tomorrow.</span>
                         </p>
                     </div>
                 </div>
@@ -889,49 +891,47 @@
             const watermark = document.getElementById('watermark');
             const scrollPos = window.scrollY;
 
-            // 1. Control Navbar class toggles
             if (scrollPos > 50) navbar.classList.add('scrolled');
             else navbar.classList.remove('scrolled');
 
-            // 2. Control dynamic watermark fade calculation
             let targetOpacity = 0.05 - (scrollPos / 350);
             if (targetOpacity < 0) targetOpacity = 0;
             watermark.style.opacity = targetOpacity;
         });
 
-        // Smart Text Box In-Focus Scrolling Mechanics + Image Reveal Engine
+        // Granular Line Focus Scanning + Reversible Mask Calculations
         const scrollerBox = document.getElementById('scrollerBox');
         const aboutShowcase = document.getElementById('aboutShowcase');
-        const textParagraphs = scrollerBox.querySelectorAll('p');
+        const textLines = scrollerBox.querySelectorAll('span');
 
         function evaluateTextFocus() {
             const boxBounds = scrollerBox.getBoundingClientRect();
             const boxCenter = boxBounds.top + (boxBounds.height / 2);
 
-            textParagraphs.forEach(p => {
-                const pBounds = p.getBoundingClientRect();
-                const pCenter = pBounds.top + (pBounds.height / 2);
-                
-                // Track distance from the absolute reading center line
-                const offsetDistance = Math.abs(boxCenter - pCenter);
+            textLines.forEach(line => {
+                const lineBounds = line.getBoundingClientRect();
+                const lineCenter = lineBounds.top + (lineBounds.height / 2);
+                const offsetDistance = Math.abs(boxCenter - lineCenter);
 
-                if (offsetDistance < 75) {
-                    p.classList.add('in-focus');
+                // Focus window optimized specifically for line-by-line sizing changes
+                if (offsetDistance < 60) {
+                    line.classList.add('line-focus');
                 } else {
-                    p.classList.remove('in-focus');
+                    line.classList.remove('line-focus');
                 }
             });
 
-            // Trigger complete image clearance when reaching the bottom
-            const precisionBuffer = 20; 
-            if (scrollerBox.scrollHeight - scrollerBox.scrollTop <= scrollerBox.clientHeight + precisionBuffer) {
+            const currentScroll = scrollerBox.scrollTop;
+            const maxScroll = scrollerBox.scrollHeight - scrollerBox.clientHeight;
+            
+            // Reversible layout triggers: scrolling back up instantly restores filter & lines
+            if (maxScroll - currentScroll <= 15) {
                 aboutShowcase.classList.add('scroll-complete');
             } else {
                 aboutShowcase.classList.remove('scroll-complete');
             }
         }
 
-        // Initialize listeners and apply default layout measurements immediately
         scrollerBox.addEventListener('scroll', evaluateTextFocus);
         window.addEventListener('resize', evaluateTextFocus);
         evaluateTextFocus();
