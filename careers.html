@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | Excedence</title>
+    <meta name="description" content="Join Excedence. Openings for Technical Academic Content Writers and a Trainee Marketing Manager in Newtown, Kolkata. Apply online and take the first-round MCQ test.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #f4f7fa;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent-blue: #1e3a8a;
+            --accent-glow: #dbeafe;
+            --border-subtle: #e2e8f0;
+            --success: #15803d;
+            --success-bg: #dcfce7;
+            --warn: #b45309;
+            --warn-bg: #fef3c7;
+            --danger: #b91c1c;
+            --danger-bg: #fee2e2;
+            --max-width: 1200px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .bg-watermark {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30vw; max-width: 400px; height: auto;
+            z-index: -1; opacity: 0.05;
+            pointer-events: none; user-select: none;
+        }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ---------- Navigation (same as home page) ---------- */
+        header {
+            border-bottom: 1px solid var(--border-subtle);
+            position: sticky; top: 0;
+            background: rgba(244, 247, 250, 0.85);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            z-index: 100; transition: all 0.3s ease;
+        }
+        header.scrolled { background: rgba(255, 255, 255, 0.9); box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03); border-bottom-color: transparent; }
+        .nav-container { max-width: var(--max-width); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; }
+        .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--accent-blue); font-weight: 700; font-size: 1.3rem; letter-spacing: -0.5px; z-index: 102; }
+        .brand-logo img { height: 38px; width: auto; object-fit: contain; }
+        nav { display: flex; align-items: center; }
+        nav a { text-decoration: none; color: var(--text-muted); margin-left: 2.5rem; font-size: 0.95rem; font-weight: 600; transition: color 0.25s ease; position: relative; }
+        nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: var(--accent-blue); transition: width 0.25s ease; }
+        nav a:hover, nav a.current { color: var(--accent-blue); }
+        nav a:hover::after, nav a.current::after { width: 100%; }
+        .menu-toggle { display: none; flex-direction: column; justify-content: space-between; width: 24px; height: 18px; background: transparent; border: none; cursor: pointer; z-index: 102; }
+        .menu-toggle span { width: 100%; height: 2px; background-color: var(--text-main); transition: all 0.3s ease; border-radius: 2px; }
+
+        /* ---------- Hero ---------- */
+        .hero { padding: 8rem 2rem 5rem; text-align: center; max-width: var(--max-width); margin: 0 auto; }
+        .hero h1 { font-size: 4rem; font-weight: 800; letter-spacing: -2.5px; line-height: 1.15; margin-bottom: 1.8rem; }
+        .hero h1 span { background: linear-gradient(120deg, var(--accent-blue), #3b82f6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 720px; margin: 0 auto 3rem; }
+        .cta-buttons { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+        .cta-button {
+            display: inline-block; background-color: var(--accent-blue); color: #fff;
+            padding: 1.05rem 2.4rem; text-decoration: none; font-size: 1rem; font-family: inherit;
+            border-radius: 8px; font-weight: 600; border: 1px solid var(--accent-blue); cursor: pointer;
+            box-shadow: 0 4px 14px rgba(30, 58, 138, 0.2);
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); white-space: nowrap;
+        }
+        .cta-button.secondary { background-color: var(--bg-card); color: var(--accent-blue); border: 1px solid var(--border-subtle); box-shadow: 0 4px 14px rgba(0,0,0,0.02); }
+        .cta-button:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3); }
+        .cta-button.secondary:hover:not(:disabled) { background-color: var(--accent-glow); border-color: rgba(30, 58, 138, 0.2); }
+        .cta-button:disabled { opacity: 0.55; cursor: not-allowed; }
+
+        /* ---------- Layout ---------- */
+        section { padding: 5rem 2rem; max-width: var(--max-width); margin: 0 auto; }
+        .section-title { font-size: 2.5rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 3.5rem; position: relative; display: inline-block; }
+        .section-title::after { content: ''; position: absolute; left: 0; bottom: -10px; width: 60px; height: 4px; background-color: var(--accent-blue); border-radius: 2px; }
+
+        /* ---------- Job cards ---------- */
+        .jobs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; align-items: start; }
+        .job-card { background: var(--bg-card); padding: 2.5rem; border: 1px solid var(--border-subtle); border-radius: 12px; box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02); transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .job-card:hover { transform: translateY(-5px); border-color: rgba(30, 58, 138, 0.15); box-shadow: 0 20px 30px rgba(30, 58, 138, 0.05); }
+        .service-tag { display: inline-block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 1.1rem; color: var(--accent-blue); background: var(--accent-glow); padding: 0.25rem 0.8rem; border-radius: 4px; }
+        .job-card h3 { font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.3; }
+        .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.4rem; }
+        .chip { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); background: var(--bg-base); border: 1px solid var(--border-subtle); padding: 0.2rem 0.75rem; border-radius: 30px; }
+        .job-card > p { color: var(--text-muted); margin-bottom: 1.2rem; }
+        .job-details { margin-bottom: 1.6rem; }
+        .job-details h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-blue); margin: 1.1rem 0 0.5rem; }
+        .job-details ul { list-style: none; }
+        .job-details li { position: relative; padding-left: 1.2rem; font-size: 0.92rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 0.4rem; }
+        .job-details li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-blue); }
+        .details-toggle { background: none; border: none; font-family: inherit; font-weight: 600; font-size: 0.95rem; color: var(--accent-blue); cursor: pointer; padding: 0; margin-bottom: 1.2rem; }
+        .details-toggle:hover { text-decoration: underline; }
+        .job-details.collapsed { display: none; }
+
+        /* ---------- Hiring process ---------- */
+        .process { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .process-step { background: var(--bg-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--accent-blue); border-radius: 8px; padding: 1.4rem; }
+        .process-step b { display: block; color: var(--accent-blue); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem; }
+        .process-step h4 { font-size: 1.05rem; margin-bottom: 0.3rem; }
+        .process-step p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; }
+
+        /* ---------- Apply / form ---------- */
+        .panel { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 3rem 2.5rem; box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02); }
+        .panel h3 { font-size: 1.5rem; margin-bottom: 0.4rem; }
+        .panel .sub { color: var(--text-muted); margin-bottom: 2rem; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1.5rem; }
+        .field { display: flex; flex-direction: column; margin-bottom: 1.3rem; }
+        .field.full { grid-column: 1 / -1; }
+        .field label { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--text-main); }
+        .field label .req { color: var(--danger); }
+        .field .hint { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.35rem; }
+        input[type=text], input[type=email], input[type=tel], input[type=number], select {
+            font-family: inherit; border: 1px solid var(--border-subtle); padding: 1rem; border-radius: 8px;
+            font-size: 1rem; outline: none; background: var(--bg-base); color: var(--text-main); width: 100%;
+        }
+        input:focus, select:focus { border-color: var(--accent-blue); background: var(--bg-card); box-shadow: 0 0 0 4px var(--accent-glow); }
+        .file-drop { position: relative; border: 1.5px dashed #94a3b8; border-radius: 8px; background: var(--bg-base); padding: 1.2rem; text-align: center; cursor: pointer; transition: all 0.25s; }
+        .file-drop:hover, .file-drop:focus-within { border-color: var(--accent-blue); background: var(--accent-glow); }
+        .file-drop input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+        .file-drop strong { color: var(--accent-blue); }
+        .file-drop .fname { display: block; margin-top: 0.3rem; font-size: 0.85rem; color: var(--text-muted); word-break: break-all; }
+        .hp { position: absolute; left: -9999px; height: 0; width: 0; opacity: 0; }
+
+        .rules { background: var(--bg-base); border: 1px solid var(--border-subtle); border-left: 4px solid var(--accent-blue); border-radius: 10px; padding: 1.6rem; margin: 0.5rem 0 1.5rem; }
+        .rules h4 { font-size: 1.1rem; margin-bottom: 1rem; }
+        .rules-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-bottom: 1.2rem; }
+        .stat { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 0.8rem; text-align: center; }
+        .stat b { display: block; font-size: 1.6rem; color: var(--accent-blue); line-height: 1.2; }
+        .stat span { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 600; }
+        .rules ul { list-style: none; }
+        .rules li { position: relative; padding-left: 1.3rem; font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0.45rem; line-height: 1.55; }
+        .rules li::before { content: '›'; position: absolute; left: 0.2rem; color: var(--accent-blue); font-weight: 800; }
+        .rules li.strong { color: var(--text-main); font-weight: 600; }
+        .agree { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 0.92rem; color: var(--text-main); margin: 1.2rem 0 0; cursor: pointer; }
+        .agree input { margin-top: 0.3rem; width: 18px; height: 18px; accent-color: var(--accent-blue); flex-shrink: 0; }
+
+        .alert { border-radius: 8px; padding: 1rem 1.2rem; font-size: 0.95rem; margin-bottom: 1.3rem; font-weight: 500; }
+        .alert.error { background: var(--danger-bg); color: var(--danger); border: 1px solid #fecaca; }
+        .alert.warn { background: var(--warn-bg); color: var(--warn); border: 1px solid #fde68a; }
+        .submit-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+        .stage-hidden { display: none !important; }
+
+        /* ---------- Exam ---------- */
+        .exam-bar { position: sticky; top: 72px; z-index: 50; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 0.9rem 1.4rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; box-shadow: 0 6px 20px rgba(15,23,42,0.05); margin-bottom: 1.5rem; }
+        .exam-bar .who { font-weight: 700; line-height: 1.3; }
+        .exam-bar .who small { display: block; font-weight: 500; color: var(--text-muted); font-size: 0.8rem; }
+        .exam-bar .progress { font-size: 0.9rem; color: var(--text-muted); font-weight: 600; }
+        .timer { font-variant-numeric: tabular-nums; font-size: 1.5rem; font-weight: 800; color: var(--accent-blue); background: var(--accent-glow); padding: 0.25rem 1rem; border-radius: 8px; min-width: 6.5rem; text-align: center; }
+        .timer.low { color: var(--danger); background: var(--danger-bg); }
+        .timer.critical { animation: pulse 1s infinite; }
+        @keyframes pulse { 50% { opacity: 0.55; } }
+
+        .exam-layout { display: grid; grid-template-columns: 1fr 300px; gap: 1.5rem; align-items: start; }
+        .q-card { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 2.2rem; box-shadow: 0 4px 20px rgba(15,23,42,0.02); user-select: none; -webkit-user-select: none; }
+        .q-meta { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; color: var(--accent-blue); margin-bottom: 0.8rem; }
+        .q-text { font-size: 1.3rem; font-weight: 700; line-height: 1.5; margin-bottom: 1.6rem; }
+        .options { display: flex; flex-direction: column; gap: 0.8rem; }
+        .option { display: flex; align-items: center; gap: 1rem; width: 100%; text-align: left; font-family: inherit; font-size: 1rem; color: var(--text-main); background: var(--bg-base); border: 1.5px solid var(--border-subtle); border-radius: 10px; padding: 1rem 1.2rem; cursor: pointer; transition: all 0.2s; }
+        .option:hover { border-color: rgba(30,58,138,0.4); background: var(--accent-glow); }
+        .option .letter { flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 0.9rem; background: var(--bg-card); border: 1.5px solid var(--border-subtle); color: var(--text-muted); }
+        .option.selected { border-color: var(--accent-blue); background: var(--accent-glow); }
+        .option.selected .letter { background: var(--accent-blue); border-color: var(--accent-blue); color: #fff; }
+        .q-actions { display: flex; justify-content: space-between; gap: 0.8rem; margin-top: 1.8rem; flex-wrap: wrap; }
+        .q-actions .grp { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+        .btn-sm { padding: 0.8rem 1.5rem; font-size: 0.95rem; }
+        .btn-text { background: none; border: none; font-family: inherit; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 0.8rem 0.4rem; }
+        .btn-text:hover { color: var(--danger); }
+
+        .palette-card { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.4rem; position: sticky; top: 160px; }
+        .palette-card h4 { font-size: 0.95rem; margin-bottom: 0.9rem; }
+        .palette { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; margin-bottom: 1.1rem; }
+        .pal { aspect-ratio: 1; border-radius: 8px; border: 1.5px solid var(--border-subtle); background: var(--bg-base); font-family: inherit; font-weight: 700; font-size: 0.85rem; color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
+        .pal.answered { background: var(--accent-blue); border-color: var(--accent-blue); color: #fff; }
+        .pal.current { box-shadow: 0 0 0 3px var(--accent-glow), 0 0 0 4.5px var(--accent-blue); }
+        .legend { display: flex; gap: 1rem; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1.2rem; flex-wrap: wrap; }
+        .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 0.35rem; vertical-align: -1px; border: 1.5px solid var(--border-subtle); background: var(--bg-base); }
+        .legend i.a { background: var(--accent-blue); border-color: var(--accent-blue); }
+        .palette-card .cta-button { width: 100%; text-align: center; }
+
+        .modal-back { position: fixed; inset: 0; background: rgba(15,23,42,0.55); z-index: 200; display: grid; place-items: center; padding: 1.5rem; }
+        .modal { background: var(--bg-card); border-radius: 14px; padding: 2.2rem; max-width: 440px; width: 100%; box-shadow: 0 25px 50px -12px rgba(15,23,42,0.35); }
+        .modal h3 { margin-bottom: 0.6rem; }
+        .modal p { color: var(--text-muted); margin-bottom: 1.6rem; }
+        .modal .grp { display: flex; gap: 0.8rem; justify-content: flex-end; flex-wrap: wrap; }
+
+        .toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); width: max-content; max-width: calc(100vw - 2rem); background: var(--text-main); color: #fff; padding: 0.9rem 1.4rem; border-radius: 10px; font-size: 0.92rem; font-weight: 500; z-index: 300; box-shadow: 0 10px 30px rgba(0,0,0,0.25); text-align: center; }
+        .card-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+        .card-actions .details-toggle { margin-bottom: 0.6rem; }
+
+        /* ---------- Result ---------- */
+        .result { text-align: center; max-width: 620px; margin: 0 auto; }
+        .ring { width: 190px; height: 190px; margin: 1.5rem auto; position: relative; }
+        .ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+        .ring circle { fill: none; stroke-width: 12; }
+        .ring .track { stroke: var(--border-subtle); }
+        .ring .bar { stroke: var(--accent-blue); stroke-linecap: round; transition: stroke-dashoffset 1.2s cubic-bezier(0.215, 0.61, 0.355, 1); }
+        .ring .num { position: absolute; inset: 0; display: grid; place-content: center; }
+        .ring .num b { font-size: 3rem; line-height: 1; letter-spacing: -1.5px; color: var(--accent-blue); }
+        .ring .num span { font-size: 0.95rem; color: var(--text-muted); font-weight: 600; }
+        .result .pct { font-size: 1.1rem; font-weight: 700; margin-bottom: 1.4rem; }
+        .result p { color: var(--text-muted); margin-bottom: 1.8rem; }
+        .big-check { width: 72px; height: 72px; border-radius: 50%; background: var(--success-bg); color: var(--success); display: grid; place-items: center; font-size: 2rem; margin: 0 auto 1rem; font-weight: 800; }
+
+        footer { background: var(--text-main); padding: 3.5rem 2rem; text-align: center; font-size: 0.95rem; color: #94a3b8; }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 3.2rem; }
+            .jobs-grid { gap: 2rem; }
+        }
+        @media (max-width: 900px) {
+            .exam-layout { grid-template-columns: 1fr; }
+            .palette-card { position: static; }
+            .jobs-grid { grid-template-columns: 1fr; }
+            .process { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+            nav { position: fixed; top: 0; right: -100%; width: 75%; max-width: 300px; height: 100vh; background: var(--bg-card); box-shadow: -10px 0 30px rgba(0,0,0,0.05); flex-direction: column; align-items: flex-start; padding: 7rem 2rem 2rem; transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); z-index: 101; }
+            nav.active { right: 0; }
+            nav a { margin-left: 0; margin-bottom: 2.5rem; font-size: 1.2rem; width: 100%; }
+            .menu-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .menu-toggle.active span:nth-child(2) { opacity: 0; }
+            .menu-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+            section { padding: 3.5rem 1.2rem; }
+            .hero { padding: 6rem 1.5rem 3rem; }
+            .hero h1 { font-size: 2.5rem; letter-spacing: -1.5px; }
+            .hero p { font-size: 1.1rem; margin-bottom: 2rem; }
+            .section-title { font-size: 2rem; margin-bottom: 3rem; }
+            .job-card, .panel { padding: 1.8rem 1.3rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .rules-stats { grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; }
+            .stat b { font-size: 1.3rem; }
+            .exam-bar { top: 66px; padding: 0.7rem 1rem; }
+            .q-card { padding: 1.4rem 1.1rem; }
+            .q-text { font-size: 1.12rem; }
+            .nav-container { padding: 1.1rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <img id="watermark" class="bg-watermark" src="logo.png" alt="" onerror="this.style.display='none';">
+
+    <header id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <img src="logo.png" alt="Excedence Logo" onerror="this.style.display='none';">
+                <span>EXCEDENCE</span>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Mobile Menu">
+                <span></span><span></span><span></span>
+            </button>
+            <nav id="navMenu">
+                <a href="index.html#about">About</a>
+                <a href="index.html#services">Our Services</a>
+                <a href="education.html">Education</a>
+                <a href="careers.html" class="current">Careers</a>
+                <a href="index.html#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero reveal" id="top">
+            <h1><span>Build your career with Excedence</span></h1>
+            <p>Join a growing academic content and research consultation firm in Newtown, Kolkata. Pick a role, register, and take the first-round online test.</p>
+            <div class="cta-buttons">
+                <a href="#openings" class="cta-button">View Openings</a>
+                <a href="#apply" class="cta-button secondary">Apply &amp; Take Test</a>
+            </div>
+        </section>
+
+        <!-- Openings -->
+        <section id="openings" class="reveal">
+            <h2 class="section-title">Current Openings</h2>
+            <div class="jobs-grid">
+
+                <article class="job-card">
+                    <span class="service-tag">Technical Academic Content</span>
+                    <h3>Technical Academic Content Writer</h3>
+                    <div class="chips">
+                        <span class="chip">Newtown, Kolkata (On-site)</span>
+                        <span class="chip">Full-time</span>
+                        <span class="chip">Fresher (0–1 year)</span>
+                        <span class="chip">4 vacancies</span>
+                        <span class="chip">1-month probation</span>
+                    </div>
+                    <p>Research technical topics and write original, well-referenced academic content in programming, databases, data analysis, machine learning, networking and software development.</p>
+                    <button class="details-toggle" type="button" data-target="det-tech" aria-expanded="false">Show full job description ▾</button>
+                    <div class="job-details collapsed" id="det-tech">
+                        <h4>Key responsibilities</h4>
+                        <ul>
+                            <li>Research topics using credible academic sources and write clear, well-structured technical content.</li>
+                            <li>Write and edit study guides, research articles, reports and technical documentation to academic standards.</li>
+                            <li>Produce 100% original, human-written content that passes plagiarism and AI-detection checks.</li>
+                            <li>Apply citation styles correctly (APA, MLA, Harvard and others).</li>
+                            <li>Work with editors and subject matter experts to improve content quality.</li>
+                            <li>Keep writing style, formatting and tone consistent with project requirements.</li>
+                            <li>Manage multiple assignments and meet deadlines.</li>
+                        </ul>
+                        <h4>Required skills</h4>
+                        <ul>
+                            <li>Excellent written English and research skills.</li>
+                            <li>Working knowledge of at least some of: databases, frontend and backend development, Java, machine learning.</li>
+                            <li>Understanding of academic writing conventions and referencing.</li>
+                            <li>Ability to explain complex technical topics clearly.</li>
+                            <li>Proficiency in MS Word, Google Docs, MS Excel, MS PowerPoint and referencing tools.</li>
+                        </ul>
+                        <h4>Eligibility</h4>
+                        <ul>
+                            <li>Bachelor’s or Master’s degree, preferably in IT, CSE, BCA or a related field.</li>
+                            <li>Own laptop or computer and a reliable home internet connection.</li>
+                        </ul>
+                    </div>
+                    <div class="card-actions"><button class="cta-button apply-btn" type="button" data-post="technical">Apply for this role</button></div>
+                </article>
+
+                <article class="job-card">
+                    <span class="service-tag">Marketing</span>
+                    <h3>Trainee Marketing Manager</h3>
+                    <div class="chips">
+                        <span class="chip">Newtown, Kolkata (On-site)</span>
+                        <span class="chip">Full-time</span>
+                        <span class="chip">Fresher (0–1 year)</span>
+                        <span class="chip">1 vacancy</span>
+                        <span class="chip">1-month probation</span>
+                    </div>
+                    <p>Promote our services, generate and follow up on leads, and build Excedence’s presence among students, colleges and research scholars. You will be trained on our services and work closely with the founders and the content team.</p>
+                    <button class="details-toggle" type="button" data-target="det-mkt" aria-expanded="false">Show full job description ▾</button>
+                    <div class="job-details collapsed" id="det-mkt">
+                        <h4>Key responsibilities</h4>
+                        <ul>
+                            <li>Generate leads for our academic content, research support and training services through social media, WhatsApp, email and direct outreach.</li>
+                            <li>Respond to inquiries professionally and convert them into clients through follow-ups.</li>
+                            <li>Plan and run online campaigns on platforms such as Instagram, LinkedIn, Facebook and WhatsApp.</li>
+                            <li>Coordinate with the content team to understand service capabilities and communicate them accurately to clients.</li>
+                            <li>Research the market, competitors and student needs, and suggest new ways to reach customers.</li>
+                            <li>Reach out to colleges, institutions and student communities to build partnerships.</li>
+                            <li>Maintain a lead and client tracker and prepare regular reports on enquiries, conversions and campaign results.</li>
+                            <li>Meet monthly targets and handle multiple tasks within deadlines.</li>
+                        </ul>
+                        <h4>Required skills</h4>
+                        <ul>
+                            <li>Excellent verbal and written communication in English (Bengali and Hindi are a plus).</li>
+                            <li>Confident, persuasive and comfortable talking to new people over calls and messages.</li>
+                            <li>Basic understanding of digital marketing and social media.</li>
+                            <li>Proficiency in MS Word, MS Excel, MS PowerPoint and Google Workspace. Familiarity with Canva or similar design tools is an advantage.</li>
+                            <li>Willingness to learn, take feedback and work toward targets.</li>
+                        </ul>
+                        <h4>Eligibility</h4>
+                        <ul>
+                            <li>Bachelor’s or Master’s degree in any field (BBA, MBA, Marketing, Mass Communication, BCA, IT or similar preferred).</li>
+                            <li>Own laptop or computer and a reliable home internet connection.</li>
+                        </ul>
+                    </div>
+                    <div class="card-actions"><button class="cta-button apply-btn" type="button" data-post="marketing">Apply for this role</button></div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Process -->
+        <section id="process" class="reveal" style="padding-top:1rem;">
+            <h2 class="section-title">How Hiring Works</h2>
+            <div class="process">
+                <div class="process-step"><b>Step 1</b><h4>Register</h4><p>Fill in your details, choose your post and upload your CV.</p></div>
+                <div class="process-step"><b>Step 2</b><h4>Online MCQ Test</h4><p>A timed, 30-question, 30-mark test for your chosen post. You see your marks as soon as you finish.</p></div>
+                <div class="process-step"><b>Step 3</b><h4>We get in touch</h4><p>Our team reviews your CV and marks and contacts shortlisted candidates.</p></div>
+            </div>
+        </section>
+
+        <!-- Apply / Exam / Result -->
+        <section id="apply" class="reveal">
+            <h2 class="section-title">Apply &amp; Take the First-Round Test</h2>
+
+            <!-- Stage 1: registration -->
+            <div id="stageForm" class="panel">
+                <h3>Candidate Registration</h3>
+                <p class="sub">Your test starts immediately after you submit this form. Please read the instructions shown after you choose a post.</p>
+
+                <div id="apiWarn" class="alert warn stage-hidden">Online applications are not open yet. Please check back soon or email <a href="mailto:excedence.official@gmail.com">excedence.official@gmail.com</a>.</div>
+                <div id="formError" class="alert error stage-hidden" role="alert"></div>
+
+                <form id="regForm" novalidate>
+                    <div class="form-grid">
+                        <div class="field full">
+                            <label for="post">Post applying for <span class="req">*</span></label>
+                            <select id="post" name="post" required>
+                                <option value="" disabled selected>Select a post</option>
+                                <option value="technical">Technical Academic Content Writer</option>
+                                <option value="marketing">Trainee Marketing Manager</option>
+                            </select>
+                        </div>
+                        <div class="field full">
+                            <label for="name">Full name <span class="req">*</span></label>
+                            <input type="text" id="name" name="name" autocomplete="name" maxlength="80" required>
+                        </div>
+                        <div class="field">
+                            <label for="age">Age <span class="req">*</span></label>
+                            <input type="number" id="age" name="age" min="18" max="65" inputmode="numeric" required>
+                        </div>
+                        <div class="field">
+                            <label for="gender">Gender <span class="req">*</span></label>
+                            <select id="gender" name="gender" required>
+                                <option value="" disabled selected>Select</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                                <option>Prefer not to say</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="email">Email address <span class="req">*</span></label>
+                            <input type="email" id="email" name="email" autocomplete="email" maxlength="120" required>
+                        </div>
+                        <div class="field">
+                            <label for="phone">Phone number <span class="req">*</span></label>
+                            <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="10-digit mobile number" required>
+                        </div>
+                        <div class="field full">
+                            <label for="cv">Upload CV <span class="req">*</span></label>
+                            <label class="file-drop" for="cv">
+                                <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
+                                <span><strong>Choose a file</strong> (PDF, DOC or DOCX, up to 2 MB)</span>
+                                <span class="fname" id="cvName">No file selected</span>
+                            </label>
+                        </div>
+                        <!-- honeypot: real people never fill this -->
+                        <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+                    </div>
+
+                    <!-- Rules for the selected post -->
+                    <div id="rulesPanel" class="rules stage-hidden">
+                        <h4 id="rulesTitle">Exam instructions</h4>
+                        <div class="rules-stats">
+                            <div class="stat"><b id="rQ">30</b><span>Questions</span></div>
+                            <div class="stat"><b id="rM">30</b><span>Marks</span></div>
+                            <div class="stat"><b id="rT">30</b><span>Minutes</span></div>
+                        </div>
+                        <ul id="rulesList"></ul>
+                        <label class="agree"><input type="checkbox" id="agree"> <span>I have read and understood the instructions, and I confirm that the details I have entered are correct.</span></label>
+                    </div>
+
+                    <div class="submit-row">
+                        <button type="submit" class="cta-button" id="startBtn">Submit &amp; Start Exam</button>
+                        <span style="font-size:0.85rem;color:var(--text-muted);">By applying you consent to Excedence storing your details and CV for recruitment purposes.</span>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Stage 2: exam -->
+            <div id="stageExam" class="stage-hidden">
+                <div class="exam-bar">
+                    <div class="who"><span id="examName"></span><small id="examPost"></small></div>
+                    <div class="progress" id="examProgress"></div>
+                    <div class="timer" id="timer" role="timer" aria-live="off">--:--</div>
+                </div>
+                <div class="exam-layout">
+                    <div class="q-card" id="qCard" oncontextmenu="return false;">
+                        <div class="q-meta" id="qMeta"></div>
+                        <div class="q-text" id="qText"></div>
+                        <div class="options" id="qOptions"></div>
+                        <div class="q-actions">
+                            <div class="grp">
+                                <button class="cta-button secondary btn-sm" type="button" id="prevBtn">← Previous</button>
+                                <button class="cta-button btn-sm" type="button" id="nextBtn">Next →</button>
+                            </div>
+                            <button class="btn-text" type="button" id="clearBtn">Clear answer</button>
+                        </div>
+                    </div>
+                    <aside class="palette-card">
+                        <h4>Question navigator</h4>
+                        <div class="palette" id="palette"></div>
+                        <div class="legend"><span><i class="a"></i>Answered</span><span><i></i>Not answered</span></div>
+                        <button class="cta-button" type="button" id="submitExamBtn">Submit Exam</button>
+                    </aside>
+                </div>
+            </div>
+
+            <!-- Stage 3: result -->
+            <div id="stageResult" class="panel stage-hidden">
+                <div class="result" id="resultBox"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 EXCEDENCE. All Rights Reserved. Engineering Authority into Document Structures.</p>
+    </footer>
+
+    <div id="modalRoot"></div>
+
+    <script>
+    /* =====================================================================
+       CONFIGURATION
+       After deploying the exam backend (see README in the private repo),
+       paste the Worker URL below, e.g. https://excedence-exam.myname.workers.dev
+       ===================================================================== */
+    const EXAM_API = "https://excedence-exam.YOUR-SUBDOMAIN.workers.dev";
+
+    const API_READY = !/YOUR-SUBDOMAIN/.test(EXAM_API);
+    const STORE_KEY = "excedence_exam_v1";
+    // Display-only (the server is the source of truth for the real duration & scoring).
+    const POSTS = {
+        technical: { label: "Technical Academic Content Writer", questions: 30, marks: 30, minutes: 30 },
+        marketing: { label: "Trainee Marketing Manager",         questions: 30, marks: 30, minutes: 30 },
+    };
+    const $ = (id) => document.getElementById(id);
+
+    /* ---------- page chrome: sticky header, reveal, mobile menu, job toggles ---------- */
+    document.addEventListener('DOMContentLoaded', () => {
+        const header = $('navbar');
+        const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 50);
+        window.addEventListener('scroll', onScroll); onScroll();
+
+        const io = new IntersectionObserver((entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }), { threshold: 0.05 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+        const menuToggle = $('menuToggle'), navMenu = $('navMenu');
+        menuToggle.addEventListener('click', () => { menuToggle.classList.toggle('active'); navMenu.classList.toggle('active'); });
+        navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menuToggle.classList.remove('active'); navMenu.classList.remove('active'); }));
+
+        document.querySelectorAll('.details-toggle').forEach(btn => btn.addEventListener('click', () => {
+            const box = $(btn.dataset.target);
+            const open = box.classList.toggle('collapsed') === false;
+            btn.textContent = open ? 'Hide job description ▴' : 'Show full job description ▾';
+            btn.setAttribute('aria-expanded', String(open));
+        }));
+
+        document.querySelectorAll('.apply-btn').forEach(btn => btn.addEventListener('click', () => {
+            selectPost(btn.dataset.post);
+            $('apply').scrollIntoView({ behavior: 'smooth' });
+        }));
+
+        const preset = new URLSearchParams(location.search).get('post');
+        if (preset && POSTS[preset]) selectPost(preset);
+
+        initForm();
+        resumeIfAny();
+    });
+
+    /* ---------- registration form ---------- */
+    function selectPost(key) {
+        const sel = $('post');
+        if (sel.disabled) return;
+        sel.value = key;
+        sel.dispatchEvent(new Event('change'));
+    }
+
+    function renderRules(key) {
+        const p = POSTS[key];
+        const panel = $('rulesPanel');
+        if (!p) { panel.classList.add('stage-hidden'); return; }
+        $('rulesTitle').textContent = 'Exam instructions — ' + p.label;
+        $('rQ').textContent = p.questions; $('rM').textContent = p.marks; $('rT').textContent = p.minutes;
+        const rules = [
+            [`The test has ${p.questions} multiple-choice questions worth 1 mark each (total ${p.marks} marks). There is no negative marking.`, false],
+            [`You have exactly ${p.minutes} minutes. The timer starts the moment you click “Submit & Start Exam” and keeps running even if you refresh, lose connection or close the page.`, true],
+            ['You can attempt the exam only once. A second attempt with the same email address or phone number is not allowed.', true],
+            ['Questions and answer options appear in a different random order for every candidate.', false],
+            ['You can move between questions, change answers and review the navigator before submitting.', false],
+            ['The exam is submitted automatically when time runs out. Unanswered questions score zero.', false],
+            ['Do not switch tabs or windows during the exam; tab switches are recorded and may be reviewed. Do not use external help.', false],
+            ['Use a stable internet connection and a laptop/desktop if possible. If the page is accidentally closed, reopen this page in the same browser to continue before time ends.', false],
+            ['Your marks are shown on screen as soon as you submit. Shortlisted candidates will be contacted by Excedence.', false],
+        ];
+        const ul = $('rulesList'); ul.textContent = '';
+        rules.forEach(([t, strong]) => { const li = document.createElement('li'); if (strong) li.className = 'strong'; li.textContent = t; ul.appendChild(li); });
+        panel.classList.remove('stage-hidden');
+    }
+
+    function showFormError(msg) {
+        const el = $('formError');
+        if (!msg) { el.classList.add('stage-hidden'); return; }
+        el.textContent = msg; el.classList.remove('stage-hidden');
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function initForm() {
+        if (!API_READY) { $('apiWarn').classList.remove('stage-hidden'); $('startBtn').disabled = true; }
+        $('post').addEventListener('change', (e) => renderRules(e.target.value));
+        $('cv').addEventListener('change', (e) => { const f = e.target.files[0]; $('cvName').textContent = f ? `${f.name} (${(f.size / 1024).toFixed(0)} KB)` : 'No file selected'; });
+        $('regForm').addEventListener('submit', onRegister);
+    }
+
+    function validateForm() {
+        const v = (id) => $(id).value.trim();
+        if (!v('post')) return 'Please select the post you are applying for.';
+        if (v('name').length < 2) return 'Please enter your full name.';
+        const age = parseInt(v('age'), 10);
+        if (!(age >= 18 && age <= 65)) return 'Age must be between 18 and 65.';
+        if (!v('gender')) return 'Please select your gender.';
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('email'))) return 'Please enter a valid email address.';
+        const digits = v('phone').replace(/\D/g, '');
+        const ten = digits.length > 10 ? digits.slice(-10) : digits;
+        if (!/^[6-9]\d{9}$/.test(ten)) return 'Please enter a valid 10-digit mobile number.';
+        const f = $('cv').files[0];
+        if (!f) return 'Please upload your CV.';
+        if (!/\.(pdf|docx?)$/i.test(f.name)) return 'CV must be a PDF, DOC or DOCX file.';
+        if (f.size > 2 * 1024 * 1024) return 'CV must be 2 MB or smaller.';
+        if (!$('agree').checked) return 'Please confirm that you have read the exam instructions.';
+        return null;
+    }
+
+    async function onRegister(e) {
+        e.preventDefault();
+        showFormError('');
+        const err = validateForm();
+        if (err) return showFormError(err);
+
+        const btn = $('startBtn');
+        btn.disabled = true; btn.textContent = 'Registering…';
+        try {
+            const res = await fetch(EXAM_API + '/api/start', { method: 'POST', body: new FormData($('regForm')) });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok) throw Object.assign(new Error(data.error || 'Something went wrong. Please try again.'), { code: data.code });
+            beginExam({
+                token: data.token, name: data.name, postLabel: data.post_label,
+                questions: data.questions, answers: Array(data.questions.length).fill(null),
+                cur: 0, endAt: Date.now() + data.remaining_seconds * 1000, tabSwitches: 0,
+            });
+        } catch (ex) {
+            const offline = ex instanceof TypeError;
+            showFormError(offline ? 'Could not reach the exam server. Please check your internet connection and try again.' : ex.message);
+            btn.disabled = false; btn.textContent = 'Submit & Start Exam';
+        }
+    }
+
+    /* ---------- exam state ---------- */
+    let S = null;            // current session
+    let tickTimer = null, submitting = false, examActive = false;
+
+    function saveSession() { try { localStorage.setItem(STORE_KEY, JSON.stringify(S)); } catch (_) {} }
+    function loadSession() { try { return JSON.parse(localStorage.getItem(STORE_KEY)); } catch (_) { return null; } }
+
+    function setStage(name) {
+        $('stageForm').classList.toggle('stage-hidden', name !== 'form');
+        $('stageExam').classList.toggle('stage-hidden', name !== 'exam');
+        $('stageResult').classList.toggle('stage-hidden', name !== 'result');
+    }
+
+    async function resumeIfAny() {
+        const saved = loadSession();
+        if (!saved || !saved.token || !API_READY) return;
+        S = saved;
+        if (S.result) { showResult(S.result); return; }
+        setStage('exam'); $('examName').textContent = 'Restoring your exam…';
+        try {
+            const res = await fetch(EXAM_API + '/api/resume', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token: S.token }) });
+            const data = await res.json().catch(() => ({}));
+            if (res.status === 410) { return finalSubmit(true); }                 // time is over -> submit what we have
+            if (!res.ok) { localStorage.removeItem(STORE_KEY); S = null; setStage('form'); return; }
+            if (data.submitted) return showResult(data);
+            S.endAt = Date.now() + data.remaining_seconds * 1000;
+            S.questions = data.questions;
+            if (!Array.isArray(S.answers) || S.answers.length !== S.questions.length) S.answers = Array(S.questions.length).fill(null);
+            beginExam(S, true);
+        } catch (_) {
+            // offline: keep going from the local copy, the clock is local anyway
+            if (S.questions && S.endAt > Date.now() - 90000) beginExam(S, true); else setStage('form');
+        }
+    }
+
+    function beginExam(session, resumed) {
+        S = session; saveSession();
+        examActive = true; submitting = false;
+        $('apply').scrollIntoView({ behavior: 'auto' });
+        setStage('exam');
+        $('examName').textContent = S.name || 'Candidate';
+        $('examPost').textContent = S.postLabel || '';
+        buildPalette(); renderQuestion(); tick();
+        clearInterval(tickTimer); tickTimer = setInterval(tick, 500);
+        window.addEventListener('beforeunload', warnLeave);
+        document.addEventListener('visibilitychange', onVisibility);
+        if (resumed) toast('Welcome back — your exam has been restored.');
+        window.scrollTo({ top: $('apply').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function warnLeave(e) { if (examActive) { e.preventDefault(); e.returnValue = ''; } }
+    // A reload/close also fires "visibilitychange"; that is not a tab switch, so ignore it.
+    let pageLeaving = false;
+    window.addEventListener('pagehide', () => { pageLeaving = true; });
+    window.addEventListener('pageshow', () => { pageLeaving = false; });
+    function onVisibility() {
+        if (!examActive || pageLeaving || document.visibilityState !== 'hidden') return;
+        S.tabSwitches = (S.tabSwitches || 0) + 1; saveSession();
+        toast('Tab switch recorded. Please stay on this page during the exam.');
+    }
+
+    function fmt(sec) { const m = Math.floor(sec / 60), s = sec % 60; return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0'); }
+    function tick() {
+        if (!examActive) return;
+        const left = Math.max(0, Math.ceil((S.endAt - Date.now()) / 1000));
+        const t = $('timer'); t.textContent = fmt(left);
+        t.classList.toggle('low', left <= 300); t.classList.toggle('critical', left <= 60);
+        if (left <= 0 && !submitting) { toast('Time is up — submitting your exam…'); finalSubmit(true); }
+    }
+
+    /* ---------- question UI ---------- */
+    function buildPalette() {
+        const pal = $('palette'); pal.textContent = '';
+        S.questions.forEach((_, i) => {
+            const b = document.createElement('button');
+            b.type = 'button'; b.className = 'pal'; b.textContent = i + 1; b.setAttribute('aria-label', 'Go to question ' + (i + 1));
+            b.addEventListener('click', () => { S.cur = i; saveSession(); renderQuestion(); });
+            pal.appendChild(b);
+        });
+    }
+    function updatePalette() {
+        const btns = $('palette').children; let done = 0;
+        S.questions.forEach((_, i) => {
+            const answered = S.answers[i] !== null && S.answers[i] !== undefined;
+            if (answered) done++;
+            btns[i].classList.toggle('answered', answered);
+            btns[i].classList.toggle('current', i === S.cur);
+        });
+        $('examProgress').textContent = `Answered ${done} / ${S.questions.length}`;
+    }
+    function renderQuestion() {
+        const q = S.questions[S.cur];
+        $('qMeta').textContent = `Question ${S.cur + 1} of ${S.questions.length}`;
+        $('qText').textContent = q.q;
+        const box = $('qOptions'); box.textContent = '';
+        q.options.forEach((text, i) => {
+            const b = document.createElement('button');
+            b.type = 'button'; b.className = 'option' + (S.answers[S.cur] === i ? ' selected' : '');
+            const l = document.createElement('span'); l.className = 'letter'; l.textContent = 'ABCD'[i];
+            const t = document.createElement('span'); t.textContent = text;
+            b.append(l, t);
+            b.addEventListener('click', () => { S.answers[S.cur] = i; saveSession(); renderQuestion(); });
+            box.appendChild(b);
+        });
+        $('prevBtn').disabled = S.cur === 0;
+        $('nextBtn').disabled = S.cur === S.questions.length - 1;
+        $('clearBtn').style.visibility = S.answers[S.cur] === null ? 'hidden' : 'visible';
+        updatePalette();
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        $('prevBtn').addEventListener('click', () => { if (S.cur > 0) { S.cur--; saveSession(); renderQuestion(); } });
+        $('nextBtn').addEventListener('click', () => { if (S.cur < S.questions.length - 1) { S.cur++; saveSession(); renderQuestion(); } });
+        $('clearBtn').addEventListener('click', () => { S.answers[S.cur] = null; saveSession(); renderQuestion(); });
+        $('submitExamBtn').addEventListener('click', confirmSubmit);
+    });
+
+    /* ---------- submit ---------- */
+    function confirmSubmit() {
+        const answered = S.answers.filter(a => a !== null && a !== undefined).length;
+        const left = S.questions.length - answered;
+        const root = $('modalRoot');
+        root.innerHTML = '';
+        const back = document.createElement('div'); back.className = 'modal-back';
+        const m = document.createElement('div'); m.className = 'modal'; m.setAttribute('role', 'dialog');
+        const h = document.createElement('h3'); h.textContent = 'Submit your exam?';
+        const p = document.createElement('p');
+        p.textContent = left > 0
+            ? `You have answered ${answered} of ${S.questions.length} questions. ${left} unanswered question${left > 1 ? 's' : ''} will score zero. You cannot retake the exam.`
+            : `You have answered all ${S.questions.length} questions. You cannot change your answers after submitting.`;
+        const g = document.createElement('div'); g.className = 'grp';
+        const back2 = document.createElement('button'); back2.className = 'cta-button secondary btn-sm'; back2.type = 'button'; back2.textContent = 'Go back';
+        const ok = document.createElement('button'); ok.className = 'cta-button btn-sm'; ok.type = 'button'; ok.textContent = 'Yes, submit';
+        back2.onclick = () => { root.innerHTML = ''; };
+        ok.onclick = () => { root.innerHTML = ''; finalSubmit(false); };
+        g.append(back2, ok); m.append(h, p, g); back.appendChild(m); root.appendChild(back);
+    }
+
+    async function finalSubmit(auto) {
+        if (submitting) return;
+        submitting = true;
+        $('submitExamBtn').disabled = true; $('submitExamBtn').textContent = 'Submitting…';
+        try {
+            const res = await fetch(EXAM_API + '/api/submit', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token: S.token, answers: S.answers, tabSwitches: S.tabSwitches || 0 }),
+            });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok) throw Object.assign(new Error(data.error || 'Submission failed'), { status: res.status });
+            showResult(data);
+        } catch (ex) {
+            submitting = false;
+            if (ex.status && ex.status < 500 && ex.status !== 429) {
+                toast(ex.message);
+                $('submitExamBtn').disabled = false; $('submitExamBtn').textContent = 'Submit Exam';
+                return;
+            }
+            toast('Could not submit — check your connection. Retrying…');
+            $('submitExamBtn').disabled = false; $('submitExamBtn').textContent = 'Retry Submit';
+            if (auto || (S.endAt - Date.now()) <= 0) setTimeout(() => finalSubmit(true), 4000);
+        }
+    }
+
+    /* ---------- result ---------- */
+    function showResult(r) {
+        examActive = false; clearInterval(tickTimer);
+        window.removeEventListener('beforeunload', warnLeave);
+        document.removeEventListener('visibilitychange', onVisibility);
+        if (S) { S.result = r; saveSession(); }
+        const name = (S && S.name) ? S.name : 'Candidate';
+        const box = $('resultBox'); box.textContent = '';
+        const mk = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; };
+
+        if (r.late) {
+            box.append(mk('div', 'big-check', '✓'), mk('h3', '', 'Exam submitted'),
+                mk('p', '', `Thank you, ${name}. Your answers reached us after the time limit, so your attempt has been marked for manual review. Our team will get in touch if needed.`));
+        } else {
+            const C = 2 * Math.PI * 80, pct = r.total ? r.score / r.total : 0;
+            box.append(mk('h3', '', 'Exam completed'), mk('p', '', `Well done, ${name}. Here are your marks for the ${S && S.postLabel ? S.postLabel : 'first-round'} test.`));
+            const ring = mk('div', 'ring');
+            ring.innerHTML = `<svg viewBox="0 0 190 190"><circle class="track" cx="95" cy="95" r="80"/><circle class="bar" cx="95" cy="95" r="80" stroke-dasharray="${C}" stroke-dashoffset="${C}"/></svg>`;
+            const num = mk('div', 'num'); num.append(mk('b', '', String(r.score)), mk('span', '', `out of ${r.total}`));
+            ring.appendChild(num); box.appendChild(ring);
+            requestAnimationFrame(() => requestAnimationFrame(() => { const bar = ring.querySelector('.bar'); if (bar) bar.style.strokeDashoffset = String(C * (1 - pct)); }));
+            box.append(mk('div', 'pct', `${r.percentage}%`),
+                mk('p', '', 'Our team will review your CV and result. Shortlisted candidates will be contacted by Excedence. Each candidate can attempt the test only once.'));
+        }
+        const home = mk('a', 'cta-button', 'Back to Home'); home.href = 'index.html'; box.appendChild(home);
+        // Shared computer? This only clears the result shown in THIS browser; the one-attempt lock is server-side.
+        const other = mk('p', '', ''); other.style.cssText = 'margin:1.6rem 0 0;font-size:0.85rem;';
+        const lnk = mk('a', '', 'Not you? Clear this screen'); lnk.href = '#'; lnk.style.color = 'var(--accent-blue)';
+        lnk.addEventListener('click', (ev) => { ev.preventDefault(); try { localStorage.removeItem(STORE_KEY); } catch (_) {} location.reload(); });
+        other.appendChild(lnk); box.appendChild(other);
+        setStage('result');
+        window.scrollTo({ top: $('apply').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function toast(msg) {
+        const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t);
+        setTimeout(() => t.remove(), 4000);
+    }
+    </script>
+</body>
+</html>
